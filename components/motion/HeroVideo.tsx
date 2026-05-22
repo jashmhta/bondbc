@@ -89,11 +89,21 @@ export function HeroVideo({
         <source src={videoSrc} type="video/mp4" />
       </motion.video>
 
-      {/* Single light bottom gradient — only enough to anchor type */}
+      {/* Bottom gradient — strong in dark mode for type contrast, softer in light */}
       <div
         className="absolute inset-x-0 bottom-0 h-[55%] pointer-events-none"
         style={{
           background: `linear-gradient(to top, var(--bg) 0%, color-mix(in oklab, var(--bg), transparent ${(1 - bottomFade) * 100}%) 60%, transparent 100%)`,
+        }}
+      />
+
+      {/* Light-mode parchment haze — adds warmth without obscuring the image */}
+      <div
+        aria-hidden
+        className="absolute inset-0 pointer-events-none dark:hidden mix-blend-multiply"
+        style={{
+          background:
+            "linear-gradient(to bottom, color-mix(in oklab, var(--bg), transparent 70%) 0%, color-mix(in oklab, var(--bg), transparent 85%) 50%, var(--bg) 100%)",
         }}
       />
 
@@ -108,9 +118,9 @@ export function HeroVideo({
         />
       )}
 
-      {/* Tiny vignette — just edges */}
+      {/* Vignette — only in dark mode, light mode wants clean edges */}
       <div
-        className="absolute inset-0 pointer-events-none"
+        className="absolute inset-0 pointer-events-none hidden dark:block"
         style={{
           background:
             "radial-gradient(ellipse 110% 90% at 50% 30%, transparent 0%, transparent 60%, color-mix(in oklab, var(--bg), transparent 70%) 100%)",
