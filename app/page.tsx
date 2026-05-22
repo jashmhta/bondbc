@@ -53,8 +53,9 @@ export default function HomePage() {
         <HeroVideo
           videoSrc={VIDEOS.hero_skyline.src}
           posterSrc={VIDEOS.hero_skyline.poster}
+          posterSrcLight="/brand/pexels-skyscrapers-gold.jpg"
           posterAlt={VIDEOS.hero_skyline.alt}
-          bottomFade={0.5}
+          bottomFade={0.55}
           sideFade={false}
         />
 
@@ -68,10 +69,10 @@ export default function HomePage() {
           aria-hidden
           className="hidden xl:flex absolute top-0 bottom-0 right-6 z-10 flex-col justify-between py-32 pointer-events-none"
         >
-          <span className="font-mono text-[10px] tracking-[0.3em] uppercase text-white/60 [writing-mode:vertical-rl] rotate-180 [text-shadow:0_1px_3px_rgba(0,0,0,0.4)]">
+          <span className="font-mono text-[10px] tracking-[0.3em] uppercase text-[var(--ink)]/60 dark:text-white/60 [writing-mode:vertical-rl] rotate-180 dark:[text-shadow:0_1px_3px_rgba(0,0,0,0.4)]">
             BBND · {BRAND.contact.address.coords}
           </span>
-          <span className="font-mono text-[10px] tracking-[0.3em] uppercase text-white/60 [writing-mode:vertical-rl] rotate-180 [text-shadow:0_1px_3px_rgba(0,0,0,0.4)]">
+          <span className="font-mono text-[10px] tracking-[0.3em] uppercase text-[var(--ink)]/60 dark:text-white/60 [writing-mode:vertical-rl] rotate-180 dark:[text-shadow:0_1px_3px_rgba(0,0,0,0.4)]">
             est. 2010 · Mumbai, IN
           </span>
         </aside>
@@ -82,7 +83,7 @@ export default function HomePage() {
             <div className="flex flex-wrap items-center gap-3 sm:gap-5 mb-12 sm:mb-16">
               <MarketClock />
               <span className="hidden sm:block h-px w-10 bg-white/30" />
-              <span className="text-[11px] sm:text-[12px] tracking-[0.18em] uppercase text-white/65 font-mono [text-shadow:0_1px_3px_rgba(0,0,0,0.3)]">
+              <span className="text-[11px] sm:text-[12px] tracking-[0.18em] uppercase text-[var(--ink)]/65 dark:text-white/65 font-mono dark:[text-shadow:0_1px_3px_rgba(0,0,0,0.3)]">
                 A division of Binary Capital
               </span>
             </div>
@@ -96,7 +97,7 @@ export default function HomePage() {
           >
             <MotionItem>
               <h1
-                className="text-[clamp(48px,11vw,180px)] leading-[0.88] tracking-[-0.045em] text-white [text-shadow:0_2px_24px_rgba(0,0,0,0.35)]"
+                className="text-[clamp(48px,11vw,180px)] leading-[0.88] tracking-[-0.045em] text-[var(--ink)] dark:text-white dark:[text-shadow:0_2px_24px_rgba(0,0,0,0.35)]"
                 style={{
                   fontFamily: "var(--font-fraunces)",
                   fontVariationSettings: '"opsz" 144, "SOFT" 60, "WONK" 1',
@@ -107,7 +108,7 @@ export default function HomePage() {
             </MotionItem>
             <MotionItem>
               <h1
-                className="text-[clamp(48px,11vw,180px)] leading-[0.88] tracking-[-0.045em] text-white [text-shadow:0_2px_24px_rgba(0,0,0,0.35)]"
+                className="text-[clamp(48px,11vw,180px)] leading-[0.88] tracking-[-0.045em] text-[var(--ink)] dark:text-white dark:[text-shadow:0_2px_24px_rgba(0,0,0,0.35)]"
                 style={{
                   fontFamily: "var(--font-fraunces)",
                   fontVariationSettings: '"opsz" 144, "SOFT" 60, "WONK" 1',
@@ -141,10 +142,10 @@ export default function HomePage() {
               duration={0.8}
               className="lg:col-span-6 max-w-xl"
             >
-              <p className="text-[clamp(15px,1.4vw,18px)] leading-[1.65] text-white/85">
+              <p className="text-[clamp(15px,1.4vw,18px)] leading-[1.65] text-[var(--ink)]/85 dark:text-white/85">
                 {BRAND.name} is{" "}
                 <em
-                  className="text-white not-italic font-medium"
+                  className="text-[var(--ink)] dark:text-white not-italic font-medium"
                   style={{ fontFamily: "var(--font-instrument-serif)", fontStyle: "italic" }}
                 >
                   India&apos;s premier institutional bond house.
@@ -165,7 +166,7 @@ export default function HomePage() {
                   <Button
                     size="xl"
                     variant="outline"
-                    className="backdrop-blur-md bg-white/10 border-white/30 text-white hover:bg-white/20"
+                    className="backdrop-blur-md bg-white/10 border-white/30 text-[var(--ink)] dark:text-white hover:bg-white/20"
                   >
                     <Download className="h-4 w-4 mr-1.5" />
                     {BRAND.cta.secondary}
@@ -183,24 +184,24 @@ export default function HomePage() {
               <div className="border-t border-white/25 pt-6 grid grid-cols-3 divide-x divide-white/15">
                 <div className="pr-4 sm:pr-6">
                   <p
-                    className="num-display text-[clamp(28px,3.5vw,48px)] leading-none tracking-[-0.02em] text-white"
+                    className="num-display text-[clamp(28px,3.5vw,48px)] leading-none tracking-[-0.02em] text-[var(--ink)] dark:text-white"
                   >
                     ₹
                     <AnimatedNumber value={2000} duration={2} />
                     <span className="text-[var(--accent)]">cr+</span>
                   </p>
-                  <p className="mt-2 text-[10px] sm:text-[11px] tracking-[0.14em] uppercase text-white/60">
+                  <p className="mt-2 text-[10px] sm:text-[11px] tracking-[0.14em] uppercase text-[var(--ink)]/60 dark:text-white/60">
                     Underwritten
                   </p>
                 </div>
                 <div className="px-4 sm:px-6">
                   <p
-                    className="num-display text-[clamp(28px,3.5vw,48px)] leading-none tracking-[-0.02em] text-white"
+                    className="num-display text-[clamp(28px,3.5vw,48px)] leading-none tracking-[-0.02em] text-[var(--ink)] dark:text-white"
                   >
                     <AnimatedNumber value={150} duration={1.6} />
                     <span className="text-[var(--accent)]">+</span>
                   </p>
-                  <p className="mt-2 text-[10px] sm:text-[11px] tracking-[0.14em] uppercase text-white/60">
+                  <p className="mt-2 text-[10px] sm:text-[11px] tracking-[0.14em] uppercase text-[var(--ink)]/60 dark:text-white/60">
                     Institutional
                     <br className="hidden sm:inline" /> Clients
                   </p>
@@ -209,7 +210,7 @@ export default function HomePage() {
                   <p className="num-display text-[clamp(28px,3.5vw,48px)] leading-none tracking-[-0.02em] text-[var(--accent)]">
                     AAA
                   </p>
-                  <p className="mt-2 text-[10px] sm:text-[11px] tracking-[0.14em] uppercase text-white/60">
+                  <p className="mt-2 text-[10px] sm:text-[11px] tracking-[0.14em] uppercase text-[var(--ink)]/60 dark:text-white/60">
                     Rating Partners
                   </p>
                 </div>
@@ -220,7 +221,7 @@ export default function HomePage() {
 
         {/* Scroll cue */}
         <div className="absolute bottom-8 left-1/2 -translate-x-1/2 hidden lg:flex flex-col items-center gap-2 z-10">
-          <span className="font-mono text-[9px] tracking-[0.24em] uppercase text-white/55">
+          <span className="font-mono text-[9px] tracking-[0.24em] uppercase text-[var(--ink)]/55 dark:text-white/55">
             scroll
           </span>
           <span className="h-10 w-px bg-gradient-to-b from-white/55 to-transparent" />

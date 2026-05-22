@@ -7,6 +7,8 @@ import { useRef } from "react";
 interface HeroVideoProps {
   videoSrc: string;
   posterSrc: string;
+  /** Optional light-mode poster — when set, swaps in via dark:hidden / dark:block */
+  posterSrcLight?: string;
   posterAlt: string;
   className?: string;
   /** Tune how dark the bottom gradient gets. 0 = transparent, 1 = solid */
@@ -26,6 +28,7 @@ interface HeroVideoProps {
 export function HeroVideo({
   videoSrc,
   posterSrc,
+  posterSrcLight,
   posterAlt,
   className,
   bottomFade = 0.55,
@@ -48,6 +51,7 @@ export function HeroVideo({
     >
       {/* Image plate — instant paint, no overlay over it directly */}
       <motion.div className="absolute inset-0" style={{ y, scale }}>
+        {/* Dark-theme poster (always present; hidden in light if a light variant is provided) */}
         <Image
           src={posterSrc}
           alt={posterAlt}
@@ -55,8 +59,20 @@ export function HeroVideo({
           priority
           quality={90}
           sizes="100vw"
-          className="object-cover"
+          className={`object-cover ${posterSrcLight ? "dark:block hidden" : ""}`}
         />
+        {/* Light-theme alternative — only renders when explicitly provided */}
+        {posterSrcLight && (
+          <Image
+            src={posterSrcLight}
+            alt={posterAlt}
+            fill
+            priority
+            quality={90}
+            sizes="100vw"
+            className="object-cover dark:hidden"
+          />
+        )}
       </motion.div>
 
       {/* Video — fades in over poster */}
