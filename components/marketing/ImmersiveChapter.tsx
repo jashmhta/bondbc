@@ -37,14 +37,17 @@ export function ImmersiveChapter({ frames, chapter, title }: ImmersiveChapterPro
     offset: ["start start", "end end"],
   });
 
+  // Mobile gets a tighter scroll budget per frame to avoid dead scroll space
   return (
     <section
       ref={ref}
-      className="relative bg-[var(--bg)]"
-      style={{ height: `${Math.max(180, frames.length * 90)}vh` }}
+      className="relative bg-[var(--bg)] [--bb-frames-h:140vh] sm:[--bb-frames-h:180vh]"
+      style={{
+        height: `calc(var(--bb-frames-h) * ${frames.length / 2})`,
+      }}
     >
-      {/* Sticky stage */}
-      <div className="sticky top-0 h-screen w-full overflow-hidden">
+      {/* Sticky stage — use dynamic viewport units so mobile Safari toolbar doesn't break it */}
+      <div className="sticky top-0 h-[100svh] w-full overflow-hidden">
         {/* Header rail */}
         <div className="absolute top-8 sm:top-12 left-6 sm:left-12 z-30 flex items-center gap-3">
           <span className="h-px w-8 bg-[var(--accent)]" />

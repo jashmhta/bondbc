@@ -5,6 +5,7 @@ import { MotionSection, MotionStagger, MotionItem } from "@/components/motion/Mo
 import { MagneticButton } from "@/components/motion/MagneticButton";
 import { Button } from "@/components/ui/Button";
 import { GoldParticles } from "@/components/motion/GoldParticles";
+import { MumbaiMap } from "@/components/marketing/MumbaiMap";
 import Link from "next/link";
 
 export const metadata: Metadata = {
@@ -201,6 +202,15 @@ export default function ContactPage() {
               </div>
             </MotionSection>
           </div>
+        </div>
+      </section>
+
+      {/* MAP */}
+      <section className="rule-t bg-[var(--bg-2)] py-20 sm:py-28">
+        <div className="container-wide max-w-6xl">
+          <MotionSection>
+            <MumbaiMap />
+          </MotionSection>
         </div>
       </section>
 

@@ -8,19 +8,18 @@ import { Button } from "@/components/ui/Button";
 import Link from "next/link";
 
 /**
- * YieldCalculator — interactive bond cashflow projection.
+ * YieldCalculator — interactive bond cashflow projector.
  *
- * Three sliders + a frequency selector control face value, coupon, and
- * tenor. Outputs a live bar chart of semi-annual cashflows + a summary
- * KPI strip showing total interest, principal at maturity, and an
- * approximate Macaulay duration.
+ * Three sliders + a frequency selector control face value, coupon, and tenor.
+ * Outputs a live cashflow chart + KPI strip (total interest, principal at
+ * maturity, Macaulay duration).
  *
- * No competitor in the Indian institutional bond space exposes this kind
- * of live, transparent cashflow reasoning on their landing page. This is
- * deliberate — it shows we think in real bond mechanics, not marketing.
+ * Dynamic slider fill: each track shows a gold gradient that ends exactly at
+ * the current value position — controlled via CSS custom property updated
+ * per-slider.
  */
 export function YieldCalculator() {
-  const [face, setFace] = useState(1_00_00_000); // 1 Cr default
+  const [face, setFace] = useState(1_00_00_000);
   const [coupon, setCoupon] = useState(8.85);
   const [tenor, setTenor] = useState(5);
   const [frequency, setFrequency] = useState<"annual" | "semi-annual" | "quarterly">(
@@ -47,7 +46,6 @@ export function YieldCalculator() {
     [cashflows],
   );
 
-  // Approximate Macaulay duration (years)
   const macaulayDuration = useMemo(() => {
     const r = coupon / 100;
     const m = frequency === "annual" ? 1 : frequency === "semi-annual" ? 2 : 4;
@@ -70,13 +68,25 @@ export function YieldCalculator() {
     return `${Math.round(n)}`;
   };
 
+  // Compute fill percentage for each slider
+  const faceMin = 10_00_000, faceMax = 50_00_00_000;
+  const facePct = ((face - faceMin) / (faceMax - faceMin)) * 100;
+  const couponPct = ((coupon - 5) / (14 - 5)) * 100;
+  const tenorPct = ((tenor - 1) / (30 - 1)) * 100;
+
   return (
     <div className="card-quiet overflow-hidden">
       {/* Heading row */}
-      <div className="px-6 sm:px-8 pt-6 sm:pt-8 pb-5 border-b border-[var(--rule)] flex flex-wrap items-end justify-between gap-3">
+      <div className="px-5 sm:px-8 pt-6 sm:pt-8 pb-5 border-b border-[var(--rule)] flex flex-wrap items-end justify-between gap-3">
         <div>
           <p className="eyebrow text-[var(--accent)] mb-1.5">Live Bond Calculator</p>
-          <h3 className="text-[clamp(20px,2.2vw,28px)] tracking-[-0.015em] leading-[1.15] text-[var(--ink)]">
+          <h3
+            className="text-[clamp(18px,2.2vw,28px)] tracking-[-0.015em] leading-[1.2] text-[var(--ink)]"
+            style={{
+              fontFamily: "var(--font-fraunces)",
+              fontVariationSettings: '"opsz" 144, "SOFT" 60, "WONK" 1',
+            }}
+          >
             Project the cashflows on your next placement.
           </h3>
         </div>
@@ -87,28 +97,29 @@ export function YieldCalculator() {
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-0">
         {/* Controls */}
-        <div className="lg:col-span-5 p-6 sm:p-8 border-b lg:border-b-0 lg:border-r border-[var(--rule)] space-y-6">
-          {/* Face value */}
+        <div className="lg:col-span-5 p-5 sm:p-8 border-b lg:border-b-0 lg:border-r border-[var(--rule)] space-y-7">
           <SliderRow
             label="Face value"
             value={`₹${inrCompact(face)}`}
+            fillPct={facePct}
             input={
               <input
                 type="range"
-                min={10_00_000}
-                max={50_00_00_000}
+                min={faceMin}
+                max={faceMax}
                 step={5_00_000}
                 value={face}
                 onChange={(e) => setFace(Number(e.target.value))}
                 className="bb-range w-full"
+                aria-label="Face value"
               />
             }
           />
 
-          {/* Coupon */}
           <SliderRow
             label="Coupon"
             value={`${coupon.toFixed(2)} %`}
+            fillPct={couponPct}
             input={
               <input
                 type="range"
@@ -118,14 +129,15 @@ export function YieldCalculator() {
                 value={coupon}
                 onChange={(e) => setCoupon(Number(e.target.value))}
                 className="bb-range w-full"
+                aria-label="Coupon rate"
               />
             }
           />
 
-          {/* Tenor */}
           <SliderRow
             label="Tenor"
             value={`${tenor} ${tenor === 1 ? "year" : "years"}`}
+            fillPct={tenorPct}
             input={
               <input
                 type="range"
@@ -135,11 +147,11 @@ export function YieldCalculator() {
                 value={tenor}
                 onChange={(e) => setTenor(Number(e.target.value))}
                 className="bb-range w-full"
+                aria-label="Tenor in years"
               />
             }
           />
 
-          {/* Frequency segmented */}
           <div>
             <p className="eyebrow !text-[10px] mb-2.5">Frequency</p>
             <div className="grid grid-cols-3 gap-1 p-1 rounded-md bg-[var(--bg-2)] border border-[var(--rule)]">
@@ -175,14 +187,11 @@ export function YieldCalculator() {
         </div>
 
         {/* Output */}
-        <div className="lg:col-span-7 p-6 sm:p-8">
-          {/* KPI strip */}
-          <div className="grid grid-cols-3 gap-px bg-[var(--rule)] rounded-md overflow-hidden border border-[var(--rule)] mb-6">
+        <div className="lg:col-span-7 p-5 sm:p-8">
+          {/* KPI strip — 1 col mobile, 3 col tablet+ */}
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-px bg-[var(--rule)] rounded-lg overflow-hidden border border-[var(--rule)] mb-6">
             <Kpi label="Total interest" value={`₹${inrCompact(totalInterest)}`} />
-            <Kpi
-              label="Principal at maturity"
-              value={`₹${inrCompact(principalAtMaturity)}`}
-            />
+            <Kpi label="Principal at maturity" value={`₹${inrCompact(principalAtMaturity)}`} />
             <Kpi
               label="Macaulay duration"
               value={`${macaulayDuration.toFixed(2)} y`}
@@ -190,10 +199,8 @@ export function YieldCalculator() {
             />
           </div>
 
-          {/* Chart */}
           <CashflowChart data={cashflows} height={220} />
 
-          {/* Footnote */}
           <p className="mt-4 text-[11px] text-[var(--ink-dim)] flex items-start gap-1.5">
             <Info className="h-3 w-3 mt-[2px] shrink-0" />
             Macaulay duration is computed at the entered yield. Modified duration ≈
@@ -203,7 +210,6 @@ export function YieldCalculator() {
         </div>
       </div>
 
-      {/* Custom slider styles */}
       <style jsx global>{`
         .bb-range {
           -webkit-appearance: none;
@@ -213,36 +219,47 @@ export function YieldCalculator() {
             to right,
             var(--accent) 0%,
             var(--accent) var(--bb-fill, 50%),
-            var(--rule) var(--bb-fill, 50%),
-            var(--rule) 100%
+            var(--rule-strong) var(--bb-fill, 50%),
+            var(--rule-strong) 100%
           );
           border-radius: 2px;
           outline: none;
+          cursor: grab;
+        }
+        .bb-range:active {
+          cursor: grabbing;
         }
         .bb-range::-webkit-slider-thumb {
           -webkit-appearance: none;
           appearance: none;
-          width: 16px;
-          height: 16px;
+          width: 20px;
+          height: 20px;
           border-radius: 50%;
-          background: var(--ink);
-          border: 2px solid var(--bg);
-          box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+          background: var(--accent);
+          border: 3px solid var(--bg);
+          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
           cursor: grab;
-          transition: transform 0.15s var(--ease-out-expo);
+          transition: transform 0.15s var(--ease-out-expo), background 0.15s ease;
+        }
+        .bb-range::-webkit-slider-thumb:hover {
+          transform: scale(1.12);
         }
         .bb-range::-webkit-slider-thumb:active {
           cursor: grabbing;
-          transform: scale(1.15);
+          transform: scale(1.2);
         }
         .bb-range::-moz-range-thumb {
-          width: 16px;
-          height: 16px;
+          width: 20px;
+          height: 20px;
           border-radius: 50%;
-          background: var(--ink);
-          border: 2px solid var(--bg);
-          box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+          background: var(--accent);
+          border: 3px solid var(--bg);
+          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
           cursor: grab;
+        }
+        .bb-range:focus-visible {
+          outline: 2px solid var(--accent);
+          outline-offset: 4px;
         }
       `}</style>
     </div>
@@ -253,18 +270,27 @@ function SliderRow({
   label,
   value,
   input,
+  fillPct,
 }: {
   label: string;
   value: string;
   input: React.ReactNode;
+  fillPct: number;
 }) {
   return (
     <div>
-      <div className="flex items-baseline justify-between mb-2">
+      <div className="flex items-baseline justify-between mb-3">
         <p className="eyebrow !text-[10px]">{label}</p>
-        <p className="num-display text-[15px] text-[var(--ink)] leading-none">{value}</p>
+        <p className="num-display text-[16px] sm:text-[17px] text-[var(--ink)] leading-none">
+          {value}
+        </p>
       </div>
-      {input}
+      <div
+        style={{ "--bb-fill": `${fillPct}%` } as React.CSSProperties}
+        className="py-2 -my-2"
+      >
+        {input}
+      </div>
     </div>
   );
 }
@@ -279,13 +305,13 @@ function Kpi({
   sub?: string;
 }) {
   return (
-    <div className="bg-[var(--bg)] p-4">
-      <p className="eyebrow !text-[10px] mb-1.5">{label}</p>
-      <p className="num-display text-[clamp(18px,2vw,24px)] text-[var(--ink)] leading-none">
+    <div className="bg-[var(--bg)] p-4 sm:p-5">
+      <p className="eyebrow !text-[10px] mb-2">{label}</p>
+      <p className="num-display text-[clamp(20px,2.2vw,26px)] text-[var(--ink)] leading-none tracking-[-0.01em]">
         {value}
       </p>
       {sub && (
-        <p className="mt-1 text-[10px] text-[var(--ink-dim)] tracking-[0.1em] uppercase">
+        <p className="mt-1.5 text-[10px] text-[var(--ink-dim)] tracking-[0.1em] uppercase">
           {sub}
         </p>
       )}

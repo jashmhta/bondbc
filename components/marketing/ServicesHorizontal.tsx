@@ -117,7 +117,7 @@ export function ServicesHorizontal() {
                 quality={85}
                 className="object-cover transition-transform duration-[1200ms] ease-[var(--ease-out-expo)] group-hover:scale-[1.05]"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/35 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/55 to-black/15" />
 
               {/* Top-left number */}
               <span className="absolute top-7 left-7 num-display text-[14px] tracking-wider text-white/70">
@@ -198,7 +198,7 @@ export function ServicesHorizontal() {
                 quality={85}
                 className="object-cover transition-transform duration-1000 ease-[var(--ease-out-expo)] group-hover:scale-[1.05]"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/55 to-black/15" />
               <span className="absolute top-5 left-5 num-display text-[13px] tracking-wider text-white/70">
                 0{i + 1} / 06
               </span>

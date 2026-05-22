@@ -6,7 +6,7 @@ import { BRAND, TEAM } from "@/lib/brand";
 import { MotionSection, MotionStagger, MotionItem } from "@/components/motion/MotionSection";
 import { ParallaxImage } from "@/components/motion/ParallaxImage";
 import { BeamCard } from "@/components/motion/BeamCard";
-import { SplitTextReveal } from "@/components/motion/SplitTextReveal";
+import { GhostReveal } from "@/components/motion/GhostReveal";
 import { MagneticButton } from "@/components/motion/MagneticButton";
 import { Button } from "@/components/ui/Button";
 import { GoldParticles } from "@/components/motion/GoldParticles";
@@ -75,20 +75,38 @@ export default function AboutPage() {
   return (
     <div className="bg-[var(--bg)] overflow-x-hidden">
       {/* HERO */}
-      <section className="relative overflow-hidden pt-44 pb-24 sm:pt-56 sm:pb-32">
+      <section className="relative overflow-hidden pt-44 pb-24 sm:pt-56 sm:pb-32 isolate">
+        {/* Background imagery — Mumbai evening twilight */}
+        <Image
+          src="/brand/pexels-mumbai-skyline-evening.jpg"
+          alt=""
+          fill
+          priority
+          quality={85}
+          sizes="100vw"
+          className="object-cover -z-20 opacity-30 dark:opacity-40"
+        />
         <div
           aria-hidden
-          className="absolute inset-x-0 top-0 h-[80%] -z-10 opacity-[0.10] pointer-events-none"
+          className="absolute inset-0 -z-10"
+          style={{
+            background:
+              "linear-gradient(to bottom, color-mix(in oklab, var(--bg), transparent 25%) 0%, var(--bg) 70%, var(--bg) 100%)",
+          }}
+        />
+        <div
+          aria-hidden
+          className="absolute inset-x-0 top-0 h-[80%] -z-10 opacity-[0.08] pointer-events-none"
           style={{
             background:
               "radial-gradient(ellipse 70% 60% at 50% 30%, var(--accent) 0%, transparent 70%)",
           }}
         />
-        <div className="absolute inset-0 -z-10 opacity-25">
+        <div className="absolute inset-0 -z-10 opacity-25 pointer-events-none">
           <GoldParticles density={0.4} connect />
         </div>
 
-        <div className="container-wide max-w-6xl">
+        <div className="container-wide max-w-6xl relative">
           <MotionSection delay={0.1}>
             <p className="eyebrow text-[var(--accent)] mb-6">House Note</p>
           </MotionSection>
@@ -101,9 +119,9 @@ export default function AboutPage() {
                 fontVariationSettings: '"opsz" 144, "SOFT" 60, "WONK" 1',
               }}
             >
-              <SplitTextReveal>
-                {`A specialised division of Binary Capital, focused on India's bond markets.`}
-              </SplitTextReveal>
+              <GhostReveal stagger={0.05} duration={1.2} drift="0.6em">
+                A specialised division of Binary Capital, focused on India&apos;s bond markets.
+              </GhostReveal>
             </h1>
           </MotionSection>
 

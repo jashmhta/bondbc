@@ -23,7 +23,10 @@ import { ParallaxImage } from "@/components/motion/ParallaxImage";
 import { BeamCard } from "@/components/motion/BeamCard";
 import { SpotlightCard } from "@/components/motion/SpotlightCard";
 import { MagneticButton } from "@/components/motion/MagneticButton";
-import { SplitTextReveal } from "@/components/motion/SplitTextReveal";
+import { GhostReveal } from "@/components/motion/GhostReveal";
+import { ComparisonTable } from "@/components/marketing/ComparisonTable";
+import { TodayOnTheDesk } from "@/components/marketing/TodayOnTheDesk";
+import { AnimatedYieldCurve } from "@/components/data/AnimatedYieldCurve";
 import { HugeMarquee } from "@/components/marketing/HugeMarquee";
 import { RotatingTestimonial } from "@/components/marketing/RotatingTestimonial";
 import { ServicesHorizontal } from "@/components/marketing/ServicesHorizontal";
@@ -269,9 +272,9 @@ export default function HomePage() {
                 fontVariationSettings: '"opsz" 144, "SOFT" 60, "WONK" 1',
               }}
             >
-              <SplitTextReveal>
-                {`A specialised division of Binary Capital, focused exclusively on the primary and secondary bond markets.`}
-              </SplitTextReveal>
+              <GhostReveal stagger={0.06} duration={1.2} drift="0.6em">
+                A specialised division of Binary Capital, focused exclusively on the primary and secondary bond markets.
+              </GhostReveal>
             </h2>
           </div>
 
@@ -359,6 +362,69 @@ export default function HomePage() {
           </p>
         </div>
         <YieldCalculator />
+
+        {/* Animated curve teaser strip below calculator */}
+        <MotionSection delay={0.2} className="mt-12 sm:mt-16">
+          <div className="card-quiet p-5 sm:p-8">
+            <div className="flex flex-wrap items-end justify-between gap-3 mb-4 sm:mb-5">
+              <div>
+                <p className="eyebrow text-[var(--accent)] mb-1.5">G-Sec curve · today</p>
+                <p
+                  className="text-[clamp(16px,2vw,22px)] tracking-[-0.01em] leading-[1.25] text-[var(--ink)]"
+                  style={{
+                    fontFamily: "var(--font-fraunces)",
+                    fontVariationSettings: '"opsz" 144, "SOFT" 60, "WONK" 1',
+                  }}
+                >
+                  3-month to 30-year curve, drawn live.
+                </p>
+              </div>
+              <Link
+                href="/research/yield-curve"
+                className="inline-flex items-center gap-1.5 text-[12px] text-[var(--ink-muted)] hover:text-[var(--accent)] transition-colors font-mono tracking-[0.04em]"
+              >
+                Full analysis
+                <ArrowUpRight className="h-3 w-3" />
+              </Link>
+            </div>
+            <AnimatedYieldCurve height={220} />
+          </div>
+        </MotionSection>
+      </section>
+
+      {/* ============================================================ */}
+      {/* TODAY ON THE DESK + COMPARISON  ▸  institutional context       */}
+      {/* ============================================================ */}
+      <section className="container-wide pb-24 sm:pb-32">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8">
+          <MotionSection delay={0.05} className="lg:col-span-7">
+            <TodayOnTheDesk />
+          </MotionSection>
+          <MotionSection delay={0.15} className="lg:col-span-5 flex flex-col gap-6">
+            {/* Side card — institutional positioning quote */}
+            <div className="card-quiet p-6 sm:p-8 flex-1">
+              <p className="eyebrow text-[var(--accent)] mb-3">Why institutional</p>
+              <p
+                className="text-[clamp(18px,2.2vw,24px)] tracking-[-0.01em] leading-[1.35] text-[var(--ink)] mb-5"
+                style={{ fontFamily: "var(--font-instrument-serif)", fontStyle: "italic" }}
+              >
+                &ldquo;Retail OBPPs reach for ticket size. We reach for{" "}
+                <span className="text-[var(--accent)]">balance-sheet weight.</span>&rdquo;
+              </p>
+              <p className="text-[13px] text-[var(--ink-muted)] leading-[1.6]">
+                We don&apos;t aggregate retail orders into wholesale lots; we underwrite
+                directly into the issue book and place out of our own balance sheet. The
+                economics flow differently — and so does the conversation.
+              </p>
+              <p className="mt-4 eyebrow text-[var(--ink-dim)]">— Shray Vasudeva</p>
+            </div>
+          </MotionSection>
+        </div>
+
+        {/* Comparison table below */}
+        <MotionSection delay={0.2} className="mt-12">
+          <ComparisonTable />
+        </MotionSection>
       </section>
 
       {/* ============================================================ */}
@@ -551,81 +617,137 @@ export default function HomePage() {
             </p>
           </div>
 
+          {/* Photo essay — feature panel + 3-card film strip */}
           <MotionStagger
-            className="grid grid-cols-2 lg:grid-cols-4 grid-flow-dense gap-3 lg:gap-4"
-            staggerChildren={0.06}
+            className="grid grid-cols-1 lg:grid-cols-12 gap-3 lg:gap-5"
+            staggerChildren={0.08}
           >
-            <MotionItem className="lg:col-span-2 lg:row-span-2">
-              <div className="relative aspect-square lg:aspect-auto lg:h-full rounded-xl overflow-hidden bg-[var(--bg-2)]">
-                <ParallaxImage
+            {/* Hero: Mumbai night feature */}
+            <MotionItem className="lg:col-span-8">
+              <figure className="relative aspect-[16/10] sm:aspect-[16/9] rounded-2xl overflow-hidden bg-[var(--bg-2)] group">
+                <Image
                   src="/brand/pexels-mumbai-skyline-night.jpg"
-                  alt="Mumbai skyline at night with reflections"
-                  intensity={5}
-                  sizes="(min-width: 1024px) 50vw, 100vw"
+                  alt="Mumbai skyline at night with city lights reflected on water"
+                  fill
+                  sizes="(min-width: 1024px) 66vw, 100vw"
+                  quality={90}
+                  priority={false}
+                  className="object-cover transition-transform duration-[1400ms] ease-[var(--ease-out-expo)] group-hover:scale-[1.04]"
                 />
-                <div className="absolute inset-x-0 bottom-0 p-5 sm:p-7 bg-gradient-to-t from-black/85 via-black/30 to-transparent">
-                  <p className="eyebrow !text-white/70 mb-1">19.07° N · 72.87° E</p>
-                  <p className="text-[15px] sm:text-[18px] text-white font-medium leading-tight">
-                    The bond market never really sleeps.
+                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent" />
+                <figcaption className="absolute inset-x-0 bottom-0 p-6 sm:p-9 text-white">
+                  <p className="font-mono text-[10px] tracking-[0.24em] uppercase text-white/65 mb-2">
+                    19.07° N · 72.87° E · Mumbai
                   </p>
-                </div>
-              </div>
+                  <p
+                    className="text-[clamp(20px,2.4vw,30px)] tracking-[-0.015em] leading-[1.2] max-w-md"
+                    style={{
+                      fontFamily: "var(--font-fraunces)",
+                      fontVariationSettings: '"opsz" 144, "SOFT" 60, "WONK" 1',
+                    }}
+                  >
+                    The bond market <em
+                      style={{ fontFamily: "var(--font-instrument-serif)", fontStyle: "italic" }}
+                    >
+                      never really sleeps.
+                    </em>
+                  </p>
+                </figcaption>
+              </figure>
             </MotionItem>
-            <MotionItem>
-              <div className="relative aspect-square rounded-xl overflow-hidden bg-[var(--bg-2)]">
-                <Image
-                  src="/brand/pexels-trading-screens.jpg"
-                  alt="Trading screens"
-                  fill
-                  sizes="25vw"
-                  className="object-cover"
-                />
-                <div className="absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-black/85 to-transparent">
-                  <p className="text-[12px] text-white font-mono">G-Sec · Live</p>
-                </div>
-              </div>
-            </MotionItem>
-            <MotionItem>
-              <div className="relative aspect-square rounded-xl overflow-hidden bg-[var(--bg-2)]">
-                <Image
-                  src="/brand/pexels-indian-architecture.jpg"
-                  alt="Mumbai colonial architecture"
-                  fill
-                  sizes="25vw"
-                  className="object-cover"
-                />
-                <div className="absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-black/85 to-transparent">
-                  <p className="text-[12px] text-white font-mono">Fort · Heritage</p>
-                </div>
-              </div>
-            </MotionItem>
-            <MotionItem>
-              <div className="relative aspect-square rounded-xl overflow-hidden bg-[var(--bg-2)]">
-                <Image
-                  src="/brand/pexels-newspaper-finance.jpg"
-                  alt="Financial newspaper"
-                  fill
-                  sizes="25vw"
-                  className="object-cover"
-                />
-                <div className="absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-black/85 to-transparent">
-                  <p className="text-[12px] text-white font-mono">Print · Archive</p>
-                </div>
-              </div>
-            </MotionItem>
-            <MotionItem>
-              <div className="relative aspect-square rounded-xl overflow-hidden bg-[var(--bg-2)]">
+
+            {/* Side rail: 2 tall cards */}
+            <MotionItem className="lg:col-span-4 grid grid-cols-2 lg:grid-cols-1 gap-3 lg:gap-5">
+              <figure className="relative aspect-square lg:aspect-[4/5] rounded-2xl overflow-hidden bg-[var(--bg-2)] group">
                 <Image
                   src="/brand/pexels-skyscrapers-gold.jpg"
-                  alt="Skyscrapers golden hour"
+                  alt="Skyscrapers at golden hour"
                   fill
-                  sizes="25vw"
-                  className="object-cover"
+                  sizes="(min-width: 1024px) 33vw, 50vw"
+                  quality={85}
+                  className="object-cover transition-transform duration-[1200ms] ease-[var(--ease-out-expo)] group-hover:scale-[1.05]"
                 />
-                <div className="absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-black/85 to-transparent">
-                  <p className="text-[12px] text-white font-mono">BKC · Open</p>
-                </div>
-              </div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
+                <figcaption className="absolute inset-x-0 bottom-0 p-4 sm:p-5">
+                  <p className="font-mono text-[10px] tracking-[0.18em] uppercase text-white/70 mb-0.5">BKC · Open</p>
+                  <p className="text-[13px] sm:text-[14px] text-white font-medium leading-tight">
+                    Bandra-Kurla Complex
+                  </p>
+                </figcaption>
+              </figure>
+
+              <figure className="relative aspect-square lg:aspect-[4/5] rounded-2xl overflow-hidden bg-[var(--bg-2)] group">
+                <Image
+                  src="/brand/pexels-trading-screens.jpg"
+                  alt="Trading screens with live market data"
+                  fill
+                  sizes="(min-width: 1024px) 33vw, 50vw"
+                  quality={85}
+                  className="object-cover transition-transform duration-[1200ms] ease-[var(--ease-out-expo)] group-hover:scale-[1.05]"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
+                <figcaption className="absolute inset-x-0 bottom-0 p-4 sm:p-5">
+                  <p className="font-mono text-[10px] tracking-[0.18em] uppercase text-white/70 mb-0.5">Live · G-Sec</p>
+                  <p className="text-[13px] sm:text-[14px] text-white font-medium leading-tight">
+                    Trading desk · ICCL
+                  </p>
+                </figcaption>
+              </figure>
+            </MotionItem>
+
+            {/* Bottom strip: 3 small cards */}
+            <MotionItem className="lg:col-span-4">
+              <figure className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-[var(--bg-2)] group">
+                <Image
+                  src="/brand/pexels-indian-architecture.jpg"
+                  alt="Heritage colonial architecture in Mumbai"
+                  fill
+                  sizes="(min-width: 1024px) 33vw, 100vw"
+                  quality={85}
+                  className="object-cover transition-transform duration-[1200ms] ease-[var(--ease-out-expo)] group-hover:scale-[1.05]"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
+                <figcaption className="absolute inset-x-0 bottom-0 p-4 sm:p-5">
+                  <p className="font-mono text-[10px] tracking-[0.18em] uppercase text-white/70 mb-0.5">Heritage</p>
+                  <p className="text-[13px] text-white font-medium">Fort · 1865</p>
+                </figcaption>
+              </figure>
+            </MotionItem>
+
+            <MotionItem className="lg:col-span-4">
+              <figure className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-[var(--bg-2)] group">
+                <Image
+                  src="/brand/pexels-mumbai-skyline-evening.jpg"
+                  alt="Mumbai skyline at evening twilight"
+                  fill
+                  sizes="(min-width: 1024px) 33vw, 100vw"
+                  quality={85}
+                  className="object-cover transition-transform duration-[1200ms] ease-[var(--ease-out-expo)] group-hover:scale-[1.05]"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
+                <figcaption className="absolute inset-x-0 bottom-0 p-4 sm:p-5">
+                  <p className="font-mono text-[10px] tracking-[0.18em] uppercase text-white/70 mb-0.5">Marine Drive</p>
+                  <p className="text-[13px] text-white font-medium">17:42 IST · Twilight</p>
+                </figcaption>
+              </figure>
+            </MotionItem>
+
+            <MotionItem className="lg:col-span-4">
+              <figure className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-[var(--bg-2)] group">
+                <Image
+                  src="/brand/pexels-newspaper-finance.jpg"
+                  alt="Financial newspaper archive"
+                  fill
+                  sizes="(min-width: 1024px) 33vw, 100vw"
+                  quality={85}
+                  className="object-cover transition-transform duration-[1200ms] ease-[var(--ease-out-expo)] group-hover:scale-[1.05]"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
+                <figcaption className="absolute inset-x-0 bottom-0 p-4 sm:p-5">
+                  <p className="font-mono text-[10px] tracking-[0.18em] uppercase text-white/70 mb-0.5">Print Archive</p>
+                  <p className="text-[13px] text-white font-medium">Mint · ET · BS</p>
+                </figcaption>
+              </figure>
             </MotionItem>
           </MotionStagger>
         </div>
@@ -634,17 +756,18 @@ export default function HomePage() {
       {/* ============================================================ */}
       {/* TRADING FLOOR VIDEO MOMENT                                    */}
       {/* ============================================================ */}
-      <section className="relative h-[80vh] sm:h-[100svh] overflow-hidden bg-[var(--bg-2)]">
+      <section className="relative h-[80vh] sm:h-[100svh] overflow-hidden isolate">
+        {/* Poster always paints — video overlays once loaded */}
         <Image
           src={VIDEOS.trading_floor.poster}
           alt={VIDEOS.trading_floor.alt}
           fill
           sizes="100vw"
           quality={85}
-          className="object-cover -z-20"
+          className="absolute inset-0 object-cover z-0"
         />
         <video
-          className="absolute inset-0 w-full h-full object-cover -z-20"
+          className="absolute inset-0 w-full h-full object-cover z-[1]"
           autoPlay
           loop
           muted
@@ -654,10 +777,11 @@ export default function HomePage() {
         >
           <source src={VIDEOS.trading_floor.src} type="video/mp4" />
         </video>
-        <div className="absolute inset-0 -z-10 bg-gradient-to-t from-[var(--bg)] via-[var(--bg)]/45 to-transparent" />
-        <div className="absolute inset-0 -z-10 bg-black/25" />
+        {/* Overlays for text legibility */}
+        <div className="absolute inset-0 bg-gradient-to-t from-[var(--bg)] via-[var(--bg)]/40 to-transparent z-[2]" />
+        <div className="absolute inset-0 bg-black/30 z-[2]" />
 
-        <div className="container-wide h-full flex flex-col justify-end pb-16 sm:pb-32 relative">
+        <div className="container-wide h-full flex flex-col justify-end pb-16 sm:pb-32 relative z-10">
           <MotionSection yOffset={28} duration={0.95}>
             <p className="eyebrow text-[var(--accent)] mb-4 [text-shadow:0_1px_8px_rgba(0,0,0,0.6)]">
               The Desk
@@ -778,27 +902,50 @@ export default function HomePage() {
       {/* ============================================================ */}
       <section className="container-wide py-24 sm:py-32">
         <MotionSection>
-          <div className="card-quiet p-8 sm:p-12 lg:p-16 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center">
+          <div className="card-quiet p-8 sm:p-12 lg:p-16 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
             <div className="lg:col-span-7">
-              <p className="eyebrow text-[var(--accent)] mb-4">Explore Binary Capital</p>
+              {/* Binary Capital lockup — logo + wordmark */}
+              <div className="flex items-center gap-4 mb-7">
+                <div className="h-14 w-14 sm:h-16 sm:w-16 rounded-xl bg-[var(--bg-2)] grid place-items-center text-[var(--ink)] shrink-0 border border-[var(--rule)]">
+                  <img
+                    src="/brand/binary-capital-mark.svg"
+                    alt="Binary Capital"
+                    className="h-10 w-auto opacity-90"
+                  />
+                </div>
+                <div>
+                  <p className="eyebrow text-[var(--accent)] mb-1">Parent firm</p>
+                  <p
+                    className="text-[clamp(20px,2vw,26px)] text-[var(--ink)] leading-none tracking-[-0.01em]"
+                    style={{
+                      fontFamily: "var(--font-fraunces)",
+                      fontVariationSettings: '"opsz" 144, "SOFT" 60, "WONK" 1',
+                    }}
+                  >
+                    Binary Capital
+                  </p>
+                </div>
+              </div>
+
               <h2
-                className="text-[clamp(28px,4vw,52px)] tracking-[-0.025em] leading-[1.05] mb-5"
+                className="text-[clamp(28px,4vw,52px)] tracking-[-0.025em] leading-[1.05] mb-6"
                 style={{
                   fontFamily: "var(--font-fraunces)",
                   fontVariationSettings: '"opsz" 144, "SOFT" 60, "WONK" 1',
                 }}
               >
                 <em
+                  className="text-[var(--accent)]"
                   style={{ fontFamily: "var(--font-instrument-serif)", fontStyle: "italic" }}
                 >
                   Bespoke
                 </em>{" "}
                 financial strategies for India&apos;s most ambitious clients.
               </h2>
-              <p className="text-[15px] leading-[1.65] text-[var(--ink-muted)] max-w-xl mb-8">
+              <p className="text-[15px] leading-[1.7] text-[var(--ink-muted)] max-w-xl mb-8">
                 Binary Capital is a leading investment banking and financial advisory firm
                 specialising in M&amp;A advisory, capital markets, project finance, and structured
-                finance solutions. With over 10 years of excellence, we serve clients across India.
+                finance solutions. Over 10 years of excellence, serving clients across India.
               </p>
               <a href="https://binarycapital.in" target="_blank" rel="noreferrer" data-cursor="grow">
                 <Button variant="primary" size="lg">
@@ -807,23 +954,31 @@ export default function HomePage() {
                 </Button>
               </a>
             </div>
-            <div className="lg:col-span-5 grid grid-cols-1 gap-3">
-              {[
-                { t: "M&A Advisory", d: "Strategic mergers & acquisitions" },
-                { t: "Capital Markets", d: "Equity & debt capital raising" },
-                { t: "Project Finance", d: "Infrastructure & project funding" },
-              ].map((c) => (
-                <div
-                  key={c.t}
-                  className="rule-t pt-4 grid grid-cols-[auto_1fr] gap-5 items-baseline"
-                >
-                  <span className="font-mono text-[10px] caps text-[var(--ink-dim)]">→</span>
-                  <div>
-                    <p className="text-[15px] font-medium text-[var(--ink)]">{c.t}</p>
-                    <p className="text-[12px] text-[var(--ink-muted)] mt-0.5">{c.d}</p>
+
+            <div className="lg:col-span-5">
+              {/* Practice areas */}
+              <p className="eyebrow !text-[10px] mb-5">Practice areas</p>
+              <div className="grid grid-cols-1 gap-px bg-[var(--rule)] border border-[var(--rule)] rounded-xl overflow-hidden">
+                {[
+                  { t: "M&A Advisory", d: "Strategic mergers & acquisitions" },
+                  { t: "Capital Markets", d: "Equity & debt capital raising" },
+                  { t: "Project Finance", d: "Infrastructure & project funding" },
+                  { t: "Structured Finance", d: "Bespoke debt & equity structures" },
+                ].map((c) => (
+                  <div
+                    key={c.t}
+                    className="bg-[var(--bg)] p-5 grid grid-cols-[auto_1fr] gap-5 items-baseline group hover:bg-[var(--surface)] transition-colors"
+                  >
+                    <span className="font-mono text-[10px] tracking-[0.18em] text-[var(--ink-dim)] group-hover:text-[var(--accent)] transition-colors">
+                      →
+                    </span>
+                    <div>
+                      <p className="text-[15px] font-medium text-[var(--ink)]">{c.t}</p>
+                      <p className="text-[12px] text-[var(--ink-muted)] mt-0.5">{c.d}</p>
+                    </div>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
           </div>
         </MotionSection>
