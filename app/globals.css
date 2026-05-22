@@ -1,0 +1,453 @@
+@import "tailwindcss";
+
+/* ─────────────────────────────────────────────────────────────────────────
+   BinaryBonds — Design Tokens
+   Editorial-institutional precision. Warm palette in OKLch.
+   ───────────────────────────────────────────────────────────────────────── */
+
+@theme inline {
+  /* Type families — wired to next/font CSS variables in app/layout.tsx */
+  --font-sans: var(--font-geist), system-ui, -apple-system, "Helvetica Neue", sans-serif;
+  --font-display: var(--font-fraunces), "Instrument Serif", Georgia, serif;
+  --font-serif: var(--font-instrument-serif), Georgia, serif;
+  --font-mono: var(--font-jetbrains-mono), "Menlo", monospace;
+
+  /* Radii — calmer than typical SaaS. We never use full-pill except on chips. */
+  --radius-2xs: 2px;
+  --radius-xs: 4px;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-xl: 20px;
+  --radius-2xl: 28px;
+
+  /* Type scale — fluid across breakpoints. Display goes to 112px on wide. */
+  --text-3xs: 11px;
+  --text-2xs: 12px;
+  --text-xs: 13px;
+  --text-sm: 14px;
+  --text-base: 16px;
+  --text-md: 18px;
+  --text-lg: 21px;
+  --text-xl: 26px;
+  --text-2xl: 32px;
+  --text-3xl: 40px;
+  --text-4xl: 56px;
+  --text-5xl: 80px;
+  --text-6xl: 112px;
+
+  /* Color tokens — bound to surfaces in :root and .dark */
+  --color-bg: var(--bg);
+  --color-bg-2: var(--bg-2);
+  --color-bg-3: var(--bg-3);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-ink: var(--ink);
+  --color-ink-muted: var(--ink-muted);
+  --color-ink-dim: var(--ink-dim);
+  --color-ink-inverse: var(--ink-inverse);
+  --color-rule: var(--rule);
+  --color-rule-strong: var(--rule-strong);
+  --color-accent: var(--accent);
+  --color-accent-fg: var(--accent-fg);
+  --color-accent-muted: var(--accent-muted);
+  --color-accent-strong: var(--accent-strong);
+  --color-gain: var(--gain);
+  --color-loss: var(--loss);
+  --color-warn: var(--warn);
+  --color-info: var(--info);
+
+  /* Chart palette — restrained, semantic. */
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+
+  /* Animation easings — quietly authored */
+  --ease-out-expo: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-out-quad: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-quad: cubic-bezier(0.7, 0, 0.84, 0);
+}
+
+/* ─────────────────────────────────────────────────────────────────────────
+   LIGHT THEME — warm cream surfaces, ink-charcoal type, refined gold accent
+   Each token is set in RGB first as a fallback for older browsers, then
+   redeclared in OKLch so newer browsers get the wide-gamut version.
+   This ensures a working site on iOS Safari < 15.4 / Chrome < 111.
+   ───────────────────────────────────────────────────────────────────────── */
+:root {
+  --bg: #fbf9f3;
+  --bg: oklch(0.985 0.005 80);
+  --bg-2: #f6f3eb;
+  --bg-2: oklch(0.97 0.006 80);
+  --bg-3: #ece7da;
+  --bg-3: oklch(0.94 0.008 80);
+  --surface: #ffffff;
+  --surface: oklch(1 0 0);
+  --surface-2: #f9f6ef;
+  --surface-2: oklch(0.98 0.004 80);
+
+  --ink: #0e1626;
+  --ink: oklch(0.15 0.012 240);
+  --ink-muted: #535e74;
+  --ink-muted: oklch(0.42 0.010 240);
+  --ink-dim: #7e8a9e;
+  --ink-dim: oklch(0.58 0.008 240);
+  --ink-inverse: #faf6ee;
+  --ink-inverse: oklch(0.98 0.005 80);
+
+  --rule: #dbd5c9;
+  --rule: oklch(0.88 0.006 80);
+  --rule-strong: #bcb4a4;
+  --rule-strong: oklch(0.78 0.008 80);
+
+  --accent: #b27123;
+  --accent: oklch(0.55 0.14 70);
+  --accent-strong: #9b5e15;
+  --accent-strong: oklch(0.48 0.16 65);
+  --accent-fg: #fcf9f3;
+  --accent-fg: oklch(0.99 0.005 80);
+  --accent-muted: rgba(178, 113, 35, 0.10);
+  --accent-muted: oklch(0.55 0.14 70 / 0.10);
+
+  --gain: #2c8c5b;
+  --gain: oklch(0.55 0.13 155);
+  --loss: #c93f30;
+  --loss: oklch(0.55 0.21 25);
+  --warn: #c2853f;
+  --warn: oklch(0.62 0.16 60);
+  --info: #2c6cae;
+  --info: oklch(0.55 0.12 240);
+
+  --chart-1: #b27123;
+  --chart-1: oklch(0.55 0.14 70);
+  --chart-2: #535e74;
+  --chart-2: oklch(0.42 0.010 240);
+  --chart-3: #2c6cae;
+  --chart-3: oklch(0.55 0.12 240);
+  --chart-4: #2c8c5b;
+  --chart-4: oklch(0.55 0.13 155);
+
+  /* Surface-specific tokens */
+  --hero-noise: 0.04;
+  --shadow-sm: 0 1px 0 0 rgba(0,0,0,0.04), 0 1px 2px 0 rgba(0,0,0,0.04);
+  --shadow-md: 0 1px 0 0 rgba(0,0,0,0.04), 0 4px 16px -4px rgba(0,0,0,0.08);
+  --shadow-lg: 0 1px 0 0 rgba(0,0,0,0.04), 0 16px 40px -8px rgba(0,0,0,0.12);
+}
+
+/* ─────────────────────────────────────────────────────────────────────────
+   DARK THEME — Robinhood "Deep Space Black" inspired. Warm-black, NEVER pure.
+   Same fallback strategy applied here.
+   ───────────────────────────────────────────────────────────────────────── */
+.dark {
+  --bg: #0b1117;
+  --bg: oklch(0.115 0.008 235);
+  --bg-2: #11171f;
+  --bg-2: oklch(0.145 0.008 235);
+  --bg-3: #181f28;
+  --bg-3: oklch(0.18 0.008 235);
+  --surface: #141a22;
+  --surface: oklch(0.155 0.008 235);
+  --surface-2: #1a2129;
+  --surface-2: oklch(0.185 0.008 235);
+
+  --ink: #f1ece1;
+  --ink: oklch(0.96 0.006 80);
+  --ink-muted: #aea89a;
+  --ink-muted: oklch(0.72 0.008 85);
+  --ink-dim: #6e798c;
+  --ink-dim: oklch(0.55 0.008 240);
+  --ink-inverse: #0e1626;
+  --ink-inverse: oklch(0.15 0.012 240);
+
+  --rule: #262d37;
+  --rule: oklch(0.235 0.008 240);
+  --rule-strong: #383f4c;
+  --rule-strong: oklch(0.32 0.010 240);
+
+  --accent: #d9a05a;
+  --accent: oklch(0.78 0.13 80);
+  --accent-strong: #e8b66f;
+  --accent-strong: oklch(0.84 0.12 80);
+  --accent-fg: #0b1117;
+  --accent-fg: oklch(0.115 0.008 235);
+  --accent-muted: rgba(217, 160, 90, 0.12);
+  --accent-muted: oklch(0.78 0.13 80 / 0.12);
+
+  --gain: #5cb87e;
+  --gain: oklch(0.75 0.16 155);
+  --loss: #db6453;
+  --loss: oklch(0.72 0.20 25);
+  --warn: #d9a05a;
+  --warn: oklch(0.78 0.16 70);
+  --info: #6da4d6;
+  --info: oklch(0.72 0.12 240);
+
+  --chart-1: #d9a05a;
+  --chart-1: oklch(0.78 0.13 80);
+  --chart-2: #aea89a;
+  --chart-2: oklch(0.72 0.008 85);
+  --chart-3: #6da4d6;
+  --chart-3: oklch(0.72 0.12 240);
+  --chart-4: #5cb87e;
+  --chart-4: oklch(0.75 0.16 155);
+
+  --shadow-sm: 0 1px 0 0 rgba(255,255,255,0.02), 0 1px 2px 0 rgba(0,0,0,0.4);
+  --shadow-md: 0 1px 0 0 rgba(255,255,255,0.02), 0 4px 16px -4px rgba(0,0,0,0.5);
+  --shadow-lg: 0 1px 0 0 rgba(255,255,255,0.03), 0 16px 40px -8px rgba(0,0,0,0.7);
+}
+
+@custom-variant dark (&:is(.dark *));
+
+/* ─────────────────────────────────────────────────────────────────────────
+   BASE STYLES
+   ───────────────────────────────────────────────────────────────────────── */
+
+@layer base {
+  * {
+    border-color: var(--rule);
+  }
+
+  *:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+
+  html {
+    font-feature-settings: "ss01" on, "ss02" on, "cv11" on;
+    -webkit-text-size-adjust: 100%;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    overflow-x: clip;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--font-sans);
+    font-size: var(--text-base);
+    line-height: 1.55;
+    font-feature-settings: "ss01" on, "cv11" on;
+    overflow-x: clip;
+    overscroll-behavior-y: none;
+  }
+
+  ::selection {
+    background: var(--accent-muted);
+    color: var(--ink);
+  }
+
+  /* Tabular numbers everywhere by default — bond data must align */
+  .num,
+  table,
+  td,
+  th,
+  .font-mono {
+    font-feature-settings: "tnum" on, "lnum" on, "zero" on;
+  }
+
+  h1, h2, h3, h4, h5 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    line-height: 1.08;
+    font-variation-settings: "opsz" 144, "SOFT" 60, "WONK" 1;
+  }
+
+  /* Italic headings use Instrument Serif for character */
+  h1 em, h2 em, h3 em, h4 em,
+  h1 i, h2 i, h3 i, h4 i {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-variation-settings: normal;
+    color: inherit;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  hr {
+    border: 0;
+    border-top: 1px solid var(--rule);
+  }
+
+  /* Nice scrollbar in dark mode */
+  ::-webkit-scrollbar { width: 10px; height: 10px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: var(--rule-strong); border-radius: 5px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--ink-dim); }
+}
+
+/* ─────────────────────────────────────────────────────────────────────────
+   UTILITIES — handcrafted, used semantically across pages
+   ───────────────────────────────────────────────────────────────────────── */
+
+@layer utilities {
+
+  .skip-link {
+    position: absolute;
+    left: -9999px;
+    top: 0;
+    background: var(--ink);
+    color: var(--ink-inverse);
+    padding: 12px 20px;
+    z-index: 100;
+    border-radius: 0 0 var(--radius-md) 0;
+  }
+  .skip-link:focus {
+    left: 0;
+  }
+
+  /* Editorial label — small caps, generous tracking */
+  .eyebrow {
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    font-size: var(--text-2xs);
+    font-weight: 500;
+    color: var(--ink-dim);
+    font-feature-settings: "case" on;
+  }
+
+  /* Numerical display — JetBrains Mono with tabular figures, slashed zero */
+  .num-display {
+    font-family: var(--font-mono);
+    font-feature-settings: "tnum" on, "lnum" on, "zero" on;
+    font-variant-numeric: tabular-nums slashed-zero;
+    letter-spacing: -0.02em;
+  }
+
+  /* Editorial reading column — never wider than 64ch */
+  .prose-column {
+    max-width: 64ch;
+  }
+
+  /* Hairline border (consistent rule color) */
+  .rule-t { border-top: 1px solid var(--rule); }
+  .rule-b { border-bottom: 1px solid var(--rule); }
+  .rule-l { border-left: 1px solid var(--rule); }
+  .rule-r { border-right: 1px solid var(--rule); }
+
+  /* Page container — narrower than typical. Editorial breathing room. */
+  .container-prose { max-width: 720px; margin-left: auto; margin-right: auto; padding-inline: 24px; }
+  .container-page { max-width: 1200px; margin-left: auto; margin-right: auto; padding-inline: 24px; }
+  .container-wide { max-width: 1440px; margin-left: auto; margin-right: auto; padding-inline: 32px; }
+
+  /* Subtle paper-texture noise overlay used on heroes for warmth */
+  .grain::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: var(--hero-noise);
+    mix-blend-mode: overlay;
+    background-image:
+      radial-gradient(rgba(255,255,255,0.08) 1px, transparent 1px),
+      radial-gradient(rgba(0,0,0,0.06) 1px, transparent 1px);
+    background-size: 3px 3px, 5px 5px;
+    background-position: 0 0, 1.5px 1.5px;
+  }
+
+  /* Animated gold beam — used very sparingly */
+  @property --beam-pos {
+    syntax: '<percentage>';
+    initial-value: 0%;
+    inherits: false;
+  }
+  .accent-beam {
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      transparent calc(var(--beam-pos) - 12%),
+      var(--accent) var(--beam-pos),
+      transparent calc(var(--beam-pos) + 12%),
+      transparent 100%
+    );
+    animation: beam-sweep 6s var(--ease-out-quad) infinite;
+  }
+  @keyframes beam-sweep {
+    0% { --beam-pos: -10%; }
+    100% { --beam-pos: 110%; }
+  }
+
+  /* Scroll-revealed section — opacity + slight rise */
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 700ms var(--ease-out-expo), transform 700ms var(--ease-out-expo);
+  }
+  .reveal.is-in {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Quiet card — institutional feel, no heavy shadow */
+  .card-quiet {
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: var(--radius-lg);
+  }
+
+  .card-quiet-2 {
+    background: var(--surface-2);
+    border: 1px solid var(--rule);
+    border-radius: var(--radius-lg);
+  }
+
+  /* Caps treatment */
+  .caps {
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-feature-settings: "case" on;
+  }
+
+  /* Wonk on hover — Fraunces shows its character */
+  .wonk-hover {
+    transition: font-variation-settings 400ms var(--ease-out-expo);
+  }
+  .wonk-hover:hover {
+    font-variation-settings: "opsz" 144, "SOFT" 100, "WONK" 1;
+  }
+
+  /* Numeric units (₹, %, bps) styled as superscript-ish small caps */
+  .unit {
+    font-family: var(--font-mono);
+    font-size: 0.55em;
+    color: var(--ink-dim);
+    font-weight: 500;
+    margin-left: 0.15em;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+}
+
+/* ─────────────────────────────────────────────────────────────────────────
+   PRINT
+   ───────────────────────────────────────────────────────────────────────── */
+@media print {
+  body { background: white; color: black; }
+  .no-print { display: none !important; }
+}
+
+/* Custom animations */
+@keyframes bounce-slow {
+  0%, 100% { transform: translateY(0); opacity: 1; }
+  50% { transform: translateY(8px); opacity: 0.5; }
+}
+.animate-bounce-slow {
+  animation: bounce-slow 2.4s var(--ease-out-expo) infinite;
+}
+
+/* Reduced motion — respect users */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
