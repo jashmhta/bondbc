@@ -4,28 +4,65 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
-import { Menu, X, ArrowUpRight, Phone, Mail, MapPin } from "lucide-react";
+import { Menu, X, ArrowUpRight, Phone, Mail, MapPin, TrendingUp } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ThemeToggle } from "./ThemeToggle";
 import { cn } from "@/lib/utils";
 import { BRAND, NAV } from "@/lib/brand";
 
+/**
+ * Nav — institutional bond-house navigation.
+ *
+ * Desktop: full-width sticky bar that lightly glasses on scroll.
+ * Mobile: floating pill cluster (left = brand, right = theme + Buy Bonds + hamburger).
+ * Pills auto-hide on scroll-down and reappear on scroll-up (Twitter-style),
+ * and they freeze in place mid-scroll instead of jittering.
+ *
+ * `Buy Bonds` is wired as the entry point for the upcoming retail trading phase.
+ */
 export function Nav() {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [hidden, setHidden] = useState(false);
+  const lastY = useRef(0);
+  const scrollTimer = useRef<number | null>(null);
 
+  // Scroll behavior: hide on scroll-down, show on scroll-up, freeze when at rest
   useEffect(() => {
-    const handler = () => setScrolled(window.scrollY > 16);
-    handler();
-    window.addEventListener("scroll", handler, { passive: true });
-    return () => window.removeEventListener("scroll", handler);
+    const onScroll = () => {
+      const y = window.scrollY;
+      const delta = y - lastY.current;
+      setScrolled(y > 16);
+
+      // Only consider hiding once we're well below the hero
+      if (y > 120) {
+        // Active scroll: hide on substantial downward, reveal on substantial upward
+        if (delta > 6) setHidden(true);
+        else if (delta < -4) setHidden(false);
+      } else {
+        // Near top: always visible
+        setHidden(false);
+      }
+      lastY.current = y;
+
+      // Freeze: if user stops scrolling, leave the bar exactly where it is
+      // (achieved naturally because the setHidden calls stop)
+      if (scrollTimer.current) window.clearTimeout(scrollTimer.current);
+      scrollTimer.current = window.setTimeout(() => {
+        /* user has paused — keep current state */
+      }, 180);
+    };
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      if (scrollTimer.current) window.clearTimeout(scrollTimer.current);
+    };
   }, []);
 
-  // Close mobile menu on route change
   useEffect(() => setMobileOpen(false), [pathname]);
 
-  // Lock body scroll when menu open — also stop Lenis
   useEffect(() => {
     if (typeof window === "undefined") return;
     if (mobileOpen) {
@@ -41,7 +78,6 @@ export function Nav() {
     };
   }, [mobileOpen]);
 
-  // Close on Escape
   useEffect(() => {
     if (!mobileOpen) return;
     const onKey = (e: KeyboardEvent) => {
@@ -51,16 +87,21 @@ export function Nav() {
     return () => window.removeEventListener("keydown", onKey);
   }, [mobileOpen]);
 
+  // Hidden when mobile menu is open we never hide the close button
+  const desktopHidden = hidden && !mobileOpen;
+  const pillsHidden = hidden && !mobileOpen;
+
   return (
     <>
-      {/* ───────── DESKTOP — full-width refined bar ───────── */}
+      {/* ───────── DESKTOP ───────── */}
       <header
         className={cn(
           "hidden md:flex fixed top-0 left-0 right-0 z-50",
-          "transition-[backdrop-filter,background,border,padding] duration-500 ease-[var(--ease-out-expo)]",
+          "transition-[transform,backdrop-filter,background,border,padding] duration-[450ms] ease-[var(--ease-out-expo)]",
           scrolled
             ? "border-b border-[var(--rule)] bg-[var(--bg)]/85 backdrop-blur-[20px] backdrop-saturate-[180%] py-1"
             : "border-b border-transparent bg-transparent py-2",
+          desktopHidden && "-translate-y-full",
         )}
       >
         <div className="container-wide w-full flex h-[64px] items-center justify-between">
@@ -114,6 +155,18 @@ export function Nav() {
               {BRAND.contact.phone}
             </a>
             <Link
+              href="/buy-bonds"
+              className={cn(
+                "inline-flex items-center gap-1.5 h-9 px-3.5 rounded-md",
+                "border border-[var(--accent)]/40 text-[var(--accent)]",
+                "text-[13px] font-medium tracking-[-0.005em]",
+                "hover:bg-[var(--accent-muted)] transition-colors",
+              )}
+            >
+              <TrendingUp className="h-3.5 w-3.5" />
+              Buy Bonds
+            </Link>
+            <Link
               href="/contact"
               className={cn(
                 "inline-flex items-center gap-1.5 h-9 px-4 rounded-md",
@@ -129,17 +182,24 @@ export function Nav() {
         </div>
       </header>
 
-      {/* ───────── MOBILE — two floating pills ───────── */}
-      <div className="md:hidden fixed top-3 left-3 right-3 z-50 flex items-center justify-between gap-3 pointer-events-none">
+      {/* ───────── MOBILE — three floating pills ───────── */}
+      <div
+        className={cn(
+          "md:hidden fixed top-3 left-3 right-3 z-50",
+          "flex items-center justify-between gap-2 pointer-events-none",
+          "transition-transform duration-[450ms] ease-[var(--ease-out-expo)]",
+          pillsHidden && "-translate-y-[calc(100%+24px)]",
+        )}
+      >
         {/* Left pill — logo + brandmark */}
         <Link
           href="/"
           aria-label="Binary Bonds — Home"
           className={cn(
-            "pointer-events-auto inline-flex items-center gap-2 h-12 pl-2 pr-4",
+            "pointer-events-auto inline-flex items-center gap-2 h-12 pl-2 pr-3.5",
             "rounded-full border border-[var(--rule)]",
-            "bg-[var(--bg)]/85 backdrop-blur-[20px] backdrop-saturate-[180%]",
-            "shadow-lg shadow-black/10 transition-all duration-300",
+            "bg-[var(--bg)]/90 backdrop-blur-[20px] backdrop-saturate-[180%]",
+            "shadow-[var(--shadow-md)] transition-all duration-300",
             "active:scale-[0.97]",
           )}
         >
@@ -155,7 +215,7 @@ export function Nav() {
           </span>
           <span className="flex flex-col leading-none">
             <span
-              className="text-[14px] tracking-[-0.01em] text-[var(--ink)]"
+              className="text-[13px] tracking-[-0.01em] text-[var(--ink)]"
               style={{
                 fontFamily: "var(--font-fraunces)",
                 fontVariationSettings: '"opsz" 144, "SOFT" 60, "WONK" 1',
@@ -169,15 +229,29 @@ export function Nav() {
           </span>
         </Link>
 
-        {/* Right pill — theme toggle + hamburger */}
+        {/* Right pill cluster — Buy Bonds + theme + hamburger */}
         <div
           className={cn(
-            "pointer-events-auto inline-flex items-center gap-1 h-12 px-1.5",
+            "pointer-events-auto inline-flex items-center gap-1 h-12 pl-1.5 pr-1.5",
             "rounded-full border border-[var(--rule)]",
-            "bg-[var(--bg)]/85 backdrop-blur-[20px] backdrop-saturate-[180%]",
-            "shadow-lg shadow-black/10",
+            "bg-[var(--bg)]/90 backdrop-blur-[20px] backdrop-saturate-[180%]",
+            "shadow-[var(--shadow-md)]",
           )}
         >
+          {/* Buy Bonds — entry point for retail phase */}
+          <Link
+            href="/buy-bonds"
+            aria-label="Buy Bonds (early access)"
+            className={cn(
+              "inline-flex items-center gap-1 h-9 px-3 rounded-full",
+              "bg-[var(--accent-muted)] text-[var(--accent)]",
+              "text-[12px] font-medium tracking-[-0.005em]",
+              "active:scale-[0.96] transition-transform",
+            )}
+          >
+            <TrendingUp className="h-3 w-3" strokeWidth={2.2} />
+            Buy
+          </Link>
           <ThemeToggle className="!h-9 !w-9 !rounded-full" />
           <button
             type="button"
@@ -191,13 +265,12 @@ export function Nav() {
         </div>
       </div>
 
-      {/* ───────── MOBILE — full-screen takeover menu ───────── */}
       <MobileMenu open={mobileOpen} onClose={() => setMobileOpen(false)} pathname={pathname} />
     </>
   );
 }
 
-// ─── Mobile menu — full-screen, editorial type, slide-in ─────────────────
+// ─── Mobile full-screen takeover ──────────────────────────────────────────
 function MobileMenu({
   open,
   onClose,
@@ -208,7 +281,6 @@ function MobileMenu({
   pathname: string;
 }) {
   const containerRef = useRef<HTMLDivElement>(null);
-
   return (
     <AnimatePresence>
       {open && (
@@ -222,7 +294,6 @@ function MobileMenu({
           aria-modal="true"
           role="dialog"
         >
-          {/* Subtle accent gradient */}
           <div
             aria-hidden
             className="absolute inset-x-0 top-0 h-[40%] opacity-[0.10] pointer-events-none"
@@ -233,12 +304,8 @@ function MobileMenu({
           />
           <div aria-hidden className="absolute inset-0 grain pointer-events-none" />
 
-          {/* Top bar — same pill positioning, swap hamburger for X */}
           <div className="absolute top-3 left-3 right-3 flex items-center justify-between gap-3">
-            <span
-              className="inline-flex items-center gap-2 h-12 pl-2 pr-4 rounded-full border border-[var(--rule)] bg-[var(--bg)]/95 backdrop-blur"
-              style={{ minWidth: 0 }}
-            >
+            <span className="inline-flex items-center gap-2 h-12 pl-2 pr-4 rounded-full border border-[var(--rule)] bg-[var(--bg)]/95 backdrop-blur">
               <span className="block h-9 w-9 rounded-full bg-[var(--surface)] grid place-items-center overflow-hidden">
                 <Image src="/brand/logo.png" alt="" width={36} height={36} priority />
               </span>
@@ -262,7 +329,6 @@ function MobileMenu({
             </button>
           </div>
 
-          {/* Menu body */}
           <div className="absolute inset-0 pt-24 pb-10 overflow-y-auto flex flex-col">
             <div className="px-6 flex-1">
               <p className="eyebrow !text-[var(--accent)] mb-6">Menu</p>
@@ -283,10 +349,7 @@ function MobileMenu({
                       <Link
                         href={l.href}
                         onClick={onClose}
-                        className={cn(
-                          "group block py-3 border-b border-[var(--rule)]",
-                          "transition-colors duration-200",
-                        )}
+                        className="group block py-3 border-b border-[var(--rule)] transition-colors duration-200"
                       >
                         <span className="flex items-center justify-between gap-3">
                           <span
@@ -324,21 +387,30 @@ function MobileMenu({
                 })}
               </ul>
 
-              {/* Primary CTA */}
+              {/* Buy Bonds — primary phase-2 CTA in menu */}
               <motion.div
                 initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{
                   duration: 0.5,
-                  delay: 0.08 + NAV.length * 0.05 + 0.05,
+                  delay: 0.08 + NAV.length * 0.05 + 0.04,
                   ease: [0.22, 1, 0.36, 1],
                 }}
-                className="mt-8"
+                className="mt-8 grid grid-cols-1 gap-3"
               >
+                <Link
+                  href="/buy-bonds"
+                  onClick={onClose}
+                  className="flex items-center justify-center gap-2 h-14 w-full rounded-full bg-[var(--accent)] text-[var(--accent-fg)] text-[16px] font-medium shadow-lg shadow-[var(--accent)]/25 active:scale-[0.98] transition-transform"
+                >
+                  <TrendingUp className="h-4 w-4" />
+                  Buy Bonds — Early access
+                  <ArrowUpRight className="h-4 w-4" />
+                </Link>
                 <Link
                   href="/contact"
                   onClick={onClose}
-                  className="flex items-center justify-center gap-2 h-14 w-full rounded-full bg-[var(--accent)] text-[var(--accent-fg)] text-[16px] font-medium shadow-lg shadow-[var(--accent)]/25 active:scale-[0.98] transition-transform"
+                  className="flex items-center justify-center gap-2 h-14 w-full rounded-full border border-[var(--rule-strong)] text-[var(--ink)] text-[15px] active:scale-[0.98] transition-transform"
                 >
                   {BRAND.cta.primary}
                   <ArrowUpRight className="h-4 w-4" />
@@ -346,7 +418,6 @@ function MobileMenu({
               </motion.div>
             </div>
 
-            {/* Contact footer */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}

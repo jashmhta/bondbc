@@ -1,0 +1,204 @@
+{
+  "images": {
+    "mumbai-skyline-night": {
+      "id": 5414582,
+      "filename": "pexels-mumbai-skyline-night.jpg",
+      "path": "/brand/pexels-mumbai-skyline-night.jpg",
+      "photographer": "Vijit Bagh",
+      "photographer_url": "https://www.pexels.com/@vijit-bagh-3435480",
+      "url": "https://www.pexels.com/photo/a-city-buildings-with-lights-at-night-5414582/",
+      "alt": "Captivating night view of Mumbai skyline with skyscrapers and reflections on still water.",
+      "width": 5697,
+      "height": 4916
+    },
+    "mumbai-skyline-evening": {
+      "id": 13074008,
+      "filename": "pexels-mumbai-skyline-evening.jpg",
+      "path": "/brand/pexels-mumbai-skyline-evening.jpg",
+      "photographer": "Yogesh Gaikwad",
+      "photographer_url": "https://www.pexels.com/@yogesh-gaikwad-284435005",
+      "url": "https://www.pexels.com/photo/bridge-over-the-river-13074008/",
+      "alt": "Stunning view of the illuminated Bandra-Worli Sea Link in Mumbai at night.",
+      "width": 6240,
+      "height": 4160
+    },
+    "trading-screens": {
+      "id": 16902140,
+      "filename": "pexels-trading-screens.jpg",
+      "path": "/brand/pexels-trading-screens.jpg",
+      "photographer": "\u0421\u0430\u0448\u0430 \u0410\u043b\u0430\u043b\u044b\u043a\u0438\u043d",
+      "photographer_url": "https://www.pexels.com/@sash2s",
+      "url": "https://www.pexels.com/photo/the-concept-of-trading-on-a-cryptocurrency-exchange-stock-market-chart-on-a-blue-background-share-dropdown-list-16902140/",
+      "alt": "Close-up of a computer screen showing dynamic financial market data and charts, indicating real-time trading updates.",
+      "width": 6000,
+      "height": 4000
+    },
+    "boardroom-meeting": {
+      "id": 7433840,
+      "filename": "pexels-boardroom-meeting.jpg",
+      "path": "/brand/pexels-boardroom-meeting.jpg",
+      "photographer": "Vlada Karpovich",
+      "photographer_url": "https://www.pexels.com/@vlada-karpovich",
+      "url": "https://www.pexels.com/photo/a-group-of-people-discussing-in-a-room-7433840/",
+      "alt": "Business professionals discussing documents in a modern meeting room.",
+      "width": 6521,
+      "height": 4347
+    },
+    "skyscrapers-gold": {
+      "id": 28570468,
+      "filename": "pexels-skyscrapers-gold.jpg",
+      "path": "/brand/pexels-skyscrapers-gold.jpg",
+      "photographer": "Andy Lee",
+      "photographer_url": "https://www.pexels.com/@andy-lee-222330306",
+      "url": "https://www.pexels.com/photo/dramatic-city-sunset-with-skyscraper-silhouette-28570468/",
+      "alt": "A stunning cityscape featuring skyscrapers silhouetted against a vibrant sunset.",
+      "width": 6000,
+      "height": 4000
+    },
+    "office-glass-corridor": {
+      "id": 9845176,
+      "filename": "pexels-office-glass-corridor.jpg",
+      "path": "/brand/pexels-office-glass-corridor.jpg",
+      "photographer": "Mathias Reding",
+      "photographer_url": "https://www.pexels.com/@matreding",
+      "url": "https://www.pexels.com/photo/low-angle-view-of-overpass-bridge-joining-buildings-9845176/",
+      "alt": "Modern architectural detail showcasing a bridge with glass facade and sleek design.",
+      "width": 6220,
+      "height": 4147
+    },
+    "bond-certificate": {
+      "id": 18449922,
+      "filename": "pexels-bond-certificate.jpg",
+      "path": "/brand/pexels-bond-certificate.jpg",
+      "photographer": "Heather Green",
+      "photographer_url": "https://www.pexels.com/@heather-green-1125370",
+      "url": "https://www.pexels.com/photo/text-above-gray-paper-surface-18449922/",
+      "alt": "Close-up view of security paper with text reminding to sign certificate.",
+      "width": 8000,
+      "height": 5304
+    },
+    "calculator-finance": {
+      "id": 7580854,
+      "filename": "pexels-calculator-finance.jpg",
+      "path": "/brand/pexels-calculator-finance.jpg",
+      "photographer": "RDNE Stock project",
+      "photographer_url": "https://www.pexels.com/@rdne",
+      "url": "https://www.pexels.com/photo/calculator-on-top-of-the-paper-7580854/",
+      "alt": "Calculator placed on financial graphs and reports showcasing data analysis and business documentation.",
+      "width": 6720,
+      "height": 4480
+    },
+    "indian-architecture": {
+      "id": 36874543,
+      "filename": "pexels-indian-architecture.jpg",
+      "path": "/brand/pexels-indian-architecture.jpg",
+      "photographer": "Frank van Dijk",
+      "photographer_url": "https://www.pexels.com/@frank-van-dijk-121009207",
+      "url": "https://www.pexels.com/photo/iconic-facade-of-taj-mahal-palace-in-mumbai-36874543/",
+      "alt": "Detailed view of the historic Taj Mahal Palace facade in Mumbai, showcasing its Victorian architecture.",
+      "width": 6720,
+      "height": 4480
+    },
+    "stock-market-india": {
+      "id": 7947742,
+      "filename": "pexels-stock-market-india.jpg",
+      "path": "/brand/pexels-stock-market-india.jpg",
+      "photographer": "RDNE Stock project",
+      "photographer_url": "https://www.pexels.com/@rdne",
+      "url": "https://www.pexels.com/photo/close-up-shot-of-a-graph-7947742/",
+      "alt": "Detailed view of a stock report displaying a market performance graph with data trends.",
+      "width": 6720,
+      "height": 4480
+    },
+    "data-monitors": {
+      "id": 6770775,
+      "filename": "pexels-data-monitors.jpg",
+      "path": "/brand/pexels-data-monitors.jpg",
+      "photographer": "Alesia  Kozik",
+      "photographer_url": "https://www.pexels.com/@alesiakozik",
+      "url": "https://www.pexels.com/photo/graph-of-the-movement-of-the-value-of-bitcoin-6770775/",
+      "alt": "Close-up of a digital market analysis display showing Bitcoin and cryptocurrency price trends.",
+      "width": 6000,
+      "height": 4000
+    },
+    "newspaper-finance": {
+      "id": 31262706,
+      "filename": "pexels-newspaper-finance.jpg",
+      "path": "/brand/pexels-newspaper-finance.jpg",
+      "photographer": "Elif",
+      "photographer_url": "https://www.pexels.com/@elif-525070928",
+      "url": "https://www.pexels.com/photo/daisies-on-newspaper-during-sunset-photography-31262706/",
+      "alt": "Yellow daisies placed on a financial newspaper on stone pavement during sunset.",
+      "width": 6240,
+      "height": 4160
+    }
+  },
+  "videos": {
+    "city-aerial-evening": {
+      "id": 19314111,
+      "src": "https://videos.pexels.com/video-files/19314111/19314111-hd_1920_1080_30fps.mp4",
+      "width": 1920,
+      "height": 1080,
+      "duration": 6,
+      "image_poster": "https://images.pexels.com/videos/19314111/city-drone-epic-sunsets-india-19314111.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=630&w=1200",
+      "user": "Nitin Khajotia",
+      "user_url": "https://www.pexels.com/@nitin-khajotia-55235902",
+      "alt": "city aerial sunset"
+    },
+    "skyscrapers-cinematic": {
+      "id": 35341571,
+      "src": "https://videos.pexels.com/video-files/35341571/14974314_640_360_60fps.mp4",
+      "width": 640,
+      "height": 360,
+      "duration": 13,
+      "image_poster": "https://images.pexels.com/videos/35341571/4k-footage-4k-sunset-video-abstract-architecture-active-lifestyle-35341571.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=630&w=1200",
+      "user": "mohcen cherifi",
+      "user_url": "https://www.pexels.com/@mohcen-cherifi-2158018034",
+      "alt": "modern skyscrapers cinematic"
+    },
+    "trading-floor-busy": {
+      "id": 6285687,
+      "src": "https://videos.pexels.com/video-files/6285687/6285687-hd_1280_720_30fps.mp4",
+      "width": 1280,
+      "height": 720,
+      "duration": 14,
+      "image_poster": "https://images.pexels.com/videos/6285687/pexels-photo-6285687.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=630&w=1200",
+      "user": "Gustavo Fring",
+      "user_url": "https://www.pexels.com/@gustavo-fring",
+      "alt": "trading floor stock market"
+    },
+    "executive-meeting": {
+      "id": 8170593,
+      "src": "https://videos.pexels.com/video-files/8170593/8170593-hd_1920_1080_25fps.mp4",
+      "width": 1920,
+      "height": 1080,
+      "duration": 7,
+      "image_poster": "https://images.pexels.com/videos/8170593/pexels-photo-8170593.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=630&w=1200",
+      "user": "Kampus Production",
+      "user_url": "https://www.pexels.com/@kampus",
+      "alt": "executive meeting business handshake"
+    },
+    "data-streams": {
+      "id": 36252897,
+      "src": "https://videos.pexels.com/video-files/36252897/15374240_640_360_30fps.mp4",
+      "width": 640,
+      "height": 360,
+      "duration": 10,
+      "image_poster": "https://images.pexels.com/videos/36252897/pexels-photo-36252897.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=630&w=1200",
+      "user": "Nicola Narracci",
+      "user_url": "https://www.pexels.com/@nicola-narracci-157460431",
+      "alt": "abstract data stream technology"
+    },
+    "mumbai-traffic-night": {
+      "id": 8361011,
+      "src": "https://videos.pexels.com/video-files/8361011/8361011-hd_1280_720_24fps.mp4",
+      "width": 1280,
+      "height": 720,
+      "duration": 56,
+      "image_poster": "https://images.pexels.com/videos/8361011/pexels-photo-8361011.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=630&w=1200",
+      "user": "Swapnil Kulkarni",
+      "user_url": "https://www.pexels.com/@majjatantu",
+      "alt": "mumbai night traffic timelapse"
+    }
+  }
+}

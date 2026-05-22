@@ -52,9 +52,10 @@ export default function HomePage() {
       <section className="relative min-h-[100svh] flex flex-col">
         <HeroVideo
           videoSrc={VIDEOS.hero_skyline.src}
-          posterSrc="/brand/hero-background-bonds.webp"
-          posterAlt="Golden hour over Mumbai's financial district"
-          bottomFade={0.6}
+          posterSrc={VIDEOS.hero_skyline.poster}
+          posterAlt={VIDEOS.hero_skyline.alt}
+          bottomFade={0.5}
+          sideFade={false}
         />
 
         {/* Sparse gold particle field */}
@@ -114,7 +115,7 @@ export default function HomePage() {
               >
                 market,
                 <InlinePill
-                  src="/brand/institutional-clients.jpg"
+                  src="/brand/pexels-boardroom-meeting.jpg"
                   alt=""
                   size="lg"
                   tilt={-2}
@@ -276,8 +277,8 @@ export default function HomePage() {
           <MotionSection delay={0.2} className="lg:col-span-4 lg:col-start-9 lg:order-3 lg:row-span-2">
             <div className="relative aspect-[4/5] rounded-xl overflow-hidden bg-[var(--bg-2)]">
               <ParallaxImage
-                src="/brand/institutional-clients.jpg"
-                alt="Institutional Investors and Financial Institutions"
+                src="/brand/pexels-boardroom-meeting.jpg"
+                alt="Institutional bond clients meeting"
                 intensity={8}
                 priority
                 sizes="(min-width: 1024px) 30vw, 100vw"
@@ -449,32 +450,32 @@ export default function HomePage() {
         title="The Process"
         frames={[
           {
-            image: "/brand/institutional-clients.jpg",
-            imageAlt: "Conference room — institutional bond client meeting",
+            image: "/brand/pexels-boardroom-meeting.jpg",
+            imageAlt: "Boardroom meeting with institutional bond clients",
             eyebrow: "Origination",
             headline: "It begins with a brief.",
             body:
               "An issuer's treasury walks us through their balance sheet, capex pipeline, and refinancing window. We model 3–4 structures against the curve and committed buyer demand.",
           },
           {
-            image: "/brand/service-credit-rating.jpg",
-            imageAlt: "Credit rating documents",
+            image: "/brand/pexels-bond-certificate.jpg",
+            imageAlt: "Bond certificate document",
             eyebrow: "Rating",
             headline: "Then we engage the agencies.",
             body:
               "Direct working relationships with CRISIL, ICRA, CARE, and India Ratings let us shape the credit story before the formal rating committee — saving weeks and protecting the spread.",
           },
           {
-            image: "/brand/service-corporate-bonds.jpg",
-            imageAlt: "Corporate bond document",
+            image: "/brand/pexels-newspaper-finance.jpg",
+            imageAlt: "Financial newspaper with bond pricing",
             eyebrow: "Underwriting",
             headline: "We commit balance sheet.",
             body:
               "Devolvement risk sits with us, not the issuer. With 150+ institutional buyers on speed dial — banks, insurance, MFs — we firm-underwrite or hard-place every issue we touch.",
           },
           {
-            image: "/brand/service-secondary-trading.jpg",
-            imageAlt: "Secondary market trading",
+            image: "/brand/pexels-trading-screens.jpg",
+            imageAlt: "Trading screens with live market data",
             eyebrow: "Settlement",
             headline: "Then we settle on ICCL.",
             body:
@@ -517,6 +518,116 @@ export default function HomePage() {
           </p>
         </div>
         <LettersFromDesk />
+      </section>
+
+      {/* ============================================================ */}
+      {/* EDITORIAL PHOTO STRIP  ▸  city as character                    */}
+      {/* ============================================================ */}
+      <section className="rule-t bg-[var(--bg)] py-20 sm:py-28">
+        <div className="container-wide">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 mb-10">
+            <div className="lg:col-span-7">
+              <p className="eyebrow text-[var(--accent)] mb-4">Where we are</p>
+              <h2
+                className="text-[clamp(32px,5vw,64px)] leading-[1.0] tracking-[-0.03em]"
+                style={{
+                  fontFamily: "var(--font-fraunces)",
+                  fontVariationSettings: '"opsz" 144, "SOFT" 60, "WONK" 1',
+                }}
+              >
+                Mumbai. <em
+                  className="text-[var(--accent)]"
+                  style={{ fontFamily: "var(--font-instrument-serif)", fontStyle: "italic" }}
+                >
+                  Where the curve meets the city.
+                </em>
+              </h2>
+            </div>
+            <p className="lg:col-span-4 lg:col-start-9 text-[15px] sm:text-[17px] leading-[1.6] text-[var(--ink-muted)] self-end">
+              India&apos;s debt capital markets concentrate within a five-square-kilometer
+              radius around BKC, Nariman Point, and Fort. Our desk sits at the geographic
+              center of it.
+            </p>
+          </div>
+
+          <MotionStagger
+            className="grid grid-cols-2 lg:grid-cols-4 grid-flow-dense gap-3 lg:gap-4"
+            staggerChildren={0.06}
+          >
+            <MotionItem className="lg:col-span-2 lg:row-span-2">
+              <div className="relative aspect-square lg:aspect-auto lg:h-full rounded-xl overflow-hidden bg-[var(--bg-2)]">
+                <ParallaxImage
+                  src="/brand/pexels-mumbai-skyline-night.jpg"
+                  alt="Mumbai skyline at night with reflections"
+                  intensity={5}
+                  sizes="(min-width: 1024px) 50vw, 100vw"
+                />
+                <div className="absolute inset-x-0 bottom-0 p-5 sm:p-7 bg-gradient-to-t from-black/85 via-black/30 to-transparent">
+                  <p className="eyebrow !text-white/70 mb-1">19.07° N · 72.87° E</p>
+                  <p className="text-[15px] sm:text-[18px] text-white font-medium leading-tight">
+                    The bond market never really sleeps.
+                  </p>
+                </div>
+              </div>
+            </MotionItem>
+            <MotionItem>
+              <div className="relative aspect-square rounded-xl overflow-hidden bg-[var(--bg-2)]">
+                <Image
+                  src="/brand/pexels-trading-screens.jpg"
+                  alt="Trading screens"
+                  fill
+                  sizes="25vw"
+                  className="object-cover"
+                />
+                <div className="absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-black/85 to-transparent">
+                  <p className="text-[12px] text-white font-mono">G-Sec · Live</p>
+                </div>
+              </div>
+            </MotionItem>
+            <MotionItem>
+              <div className="relative aspect-square rounded-xl overflow-hidden bg-[var(--bg-2)]">
+                <Image
+                  src="/brand/pexels-indian-architecture.jpg"
+                  alt="Mumbai colonial architecture"
+                  fill
+                  sizes="25vw"
+                  className="object-cover"
+                />
+                <div className="absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-black/85 to-transparent">
+                  <p className="text-[12px] text-white font-mono">Fort · Heritage</p>
+                </div>
+              </div>
+            </MotionItem>
+            <MotionItem>
+              <div className="relative aspect-square rounded-xl overflow-hidden bg-[var(--bg-2)]">
+                <Image
+                  src="/brand/pexels-newspaper-finance.jpg"
+                  alt="Financial newspaper"
+                  fill
+                  sizes="25vw"
+                  className="object-cover"
+                />
+                <div className="absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-black/85 to-transparent">
+                  <p className="text-[12px] text-white font-mono">Print · Archive</p>
+                </div>
+              </div>
+            </MotionItem>
+            <MotionItem>
+              <div className="relative aspect-square rounded-xl overflow-hidden bg-[var(--bg-2)]">
+                <Image
+                  src="/brand/pexels-skyscrapers-gold.jpg"
+                  alt="Skyscrapers golden hour"
+                  fill
+                  sizes="25vw"
+                  className="object-cover"
+                />
+                <div className="absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-black/85 to-transparent">
+                  <p className="text-[12px] text-white font-mono">BKC · Open</p>
+                </div>
+              </div>
+            </MotionItem>
+          </MotionStagger>
+        </div>
       </section>
 
       {/* ============================================================ */}

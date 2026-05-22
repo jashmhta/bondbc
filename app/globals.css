@@ -70,69 +70,75 @@
 }
 
 /* ─────────────────────────────────────────────────────────────────────────
-   LIGHT THEME — warm cream surfaces, ink-charcoal type, refined gold accent
-   Each token is set in RGB first as a fallback for older browsers, then
-   redeclared in OKLch so newer browsers get the wide-gamut version.
-   This ensures a working site on iOS Safari < 15.4 / Chrome < 111.
+   LIGHT THEME — Editorial Paper
+   Independent design language, NOT an inversion of dark mode.
+   Identity: vintage finance newspaper meets premium private banking.
+   Paper-cream, ink-graphite, oxide gold, indigo data accents.
    ───────────────────────────────────────────────────────────────────────── */
 :root {
-  --bg: #fbf9f3;
-  --bg: oklch(0.985 0.005 80);
-  --bg-2: #f6f3eb;
-  --bg-2: oklch(0.97 0.006 80);
-  --bg-3: #ece7da;
-  --bg-3: oklch(0.94 0.008 80);
-  --surface: #ffffff;
-  --surface: oklch(1 0 0);
-  --surface-2: #f9f6ef;
-  --surface-2: oklch(0.98 0.004 80);
+  /* Paper surfaces — warm with subtle yellow undertone like archival paper */
+  --bg: #f7f2e8;
+  --bg: oklch(0.955 0.014 82);
+  --bg-2: #efe9da;
+  --bg-2: oklch(0.92 0.018 82);
+  --bg-3: #e3dbc7;
+  --bg-3: oklch(0.875 0.022 82);
+  --surface: #fefcf6;
+  --surface: oklch(0.985 0.011 82);
+  --surface-2: #f3ede0;
+  --surface-2: oklch(0.935 0.016 82);
 
-  --ink: #0e1626;
-  --ink: oklch(0.15 0.012 240);
-  --ink-muted: #535e74;
-  --ink-muted: oklch(0.42 0.010 240);
-  --ink-dim: #7e8a9e;
-  --ink-dim: oklch(0.58 0.008 240);
-  --ink-inverse: #faf6ee;
-  --ink-inverse: oklch(0.98 0.005 80);
+  /* Ink hierarchy — true graphite, not blue-black */
+  --ink: #1a1612;
+  --ink: oklch(0.20 0.012 60);
+  --ink-muted: #4a4137;
+  --ink-muted: oklch(0.38 0.014 65);
+  --ink-dim: #786c5d;
+  --ink-dim: oklch(0.55 0.018 70);
+  --ink-inverse: #fefcf6;
+  --ink-inverse: oklch(0.985 0.011 82);
 
-  --rule: #dbd5c9;
-  --rule: oklch(0.88 0.006 80);
-  --rule-strong: #bcb4a4;
-  --rule-strong: oklch(0.78 0.008 80);
+  /* Rules — visible enough to delineate, not so heavy they shout */
+  --rule: #c9bca5;
+  --rule: oklch(0.78 0.022 80);
+  --rule-strong: #a89673;
+  --rule-strong: oklch(0.65 0.040 78);
 
-  --accent: #b27123;
-  --accent: oklch(0.55 0.14 70);
-  --accent-strong: #9b5e15;
-  --accent-strong: oklch(0.48 0.16 65);
-  --accent-fg: #fcf9f3;
-  --accent-fg: oklch(0.99 0.005 80);
-  --accent-muted: rgba(178, 113, 35, 0.10);
-  --accent-muted: oklch(0.55 0.14 70 / 0.10);
+  /* Accent — deep oxide gold (think India ink + brass) */
+  --accent: #8a5a14;
+  --accent: oklch(0.46 0.115 68);
+  --accent-strong: #6e4308;
+  --accent-strong: oklch(0.38 0.115 65);
+  --accent-fg: #fefcf6;
+  --accent-fg: oklch(0.985 0.011 82);
+  --accent-muted: rgba(138, 90, 20, 0.10);
+  --accent-muted: oklch(0.46 0.115 68 / 0.10);
 
-  --gain: #2c8c5b;
-  --gain: oklch(0.55 0.13 155);
-  --loss: #c93f30;
-  --loss: oklch(0.55 0.21 25);
-  --warn: #c2853f;
-  --warn: oklch(0.62 0.16 60);
-  --info: #2c6cae;
-  --info: oklch(0.55 0.12 240);
+  /* Semantic — desaturated for editorial restraint */
+  --gain: #2d6b3f;
+  --gain: oklch(0.48 0.12 152);
+  --loss: #b13a2a;
+  --loss: oklch(0.48 0.18 28);
+  --warn: #a4711d;
+  --warn: oklch(0.55 0.14 68);
+  --info: #2b5c8e;
+  --info: oklch(0.48 0.10 240);
 
-  --chart-1: #b27123;
-  --chart-1: oklch(0.55 0.14 70);
-  --chart-2: #535e74;
-  --chart-2: oklch(0.42 0.010 240);
-  --chart-3: #2c6cae;
-  --chart-3: oklch(0.55 0.12 240);
-  --chart-4: #2c8c5b;
-  --chart-4: oklch(0.55 0.13 155);
+  /* Charts — discrete editorial palette */
+  --chart-1: #8a5a14;
+  --chart-1: oklch(0.46 0.115 68);
+  --chart-2: #4a4137;
+  --chart-2: oklch(0.38 0.014 65);
+  --chart-3: #2b5c8e;
+  --chart-3: oklch(0.48 0.10 240);
+  --chart-4: #2d6b3f;
+  --chart-4: oklch(0.48 0.12 152);
 
-  /* Surface-specific tokens */
-  --hero-noise: 0.04;
-  --shadow-sm: 0 1px 0 0 rgba(0,0,0,0.04), 0 1px 2px 0 rgba(0,0,0,0.04);
-  --shadow-md: 0 1px 0 0 rgba(0,0,0,0.04), 0 4px 16px -4px rgba(0,0,0,0.08);
-  --shadow-lg: 0 1px 0 0 rgba(0,0,0,0.04), 0 16px 40px -8px rgba(0,0,0,0.12);
+  /* Atmospheric tokens */
+  --hero-noise: 0.08;
+  --shadow-sm: 0 1px 0 0 rgba(70,50,20,0.04), 0 1px 2px 0 rgba(70,50,20,0.05);
+  --shadow-md: 0 1px 0 0 rgba(70,50,20,0.04), 0 6px 20px -6px rgba(70,50,20,0.10);
+  --shadow-lg: 0 1px 0 0 rgba(70,50,20,0.04), 0 24px 56px -16px rgba(70,50,20,0.16);
 }
 
 /* ─────────────────────────────────────────────────────────────────────────
@@ -231,6 +237,23 @@
     font-feature-settings: "ss01" on, "cv11" on;
     overflow-x: clip;
     overscroll-behavior-y: none;
+  }
+
+  /* Light-theme paper texture: archival warmth, off-white grain */
+  :root:not(.dark) body {
+    background-image:
+      radial-gradient(at 0% 0%, rgba(138, 90, 20, 0.025) 0%, transparent 50%),
+      radial-gradient(at 100% 100%, rgba(74, 65, 55, 0.035) 0%, transparent 60%),
+      var(--bg);
+  }
+
+  /* Slight crisp edge on light-mode cards — like ink on cotton paper */
+  :root:not(.dark) .card-quiet,
+  :root:not(.dark) .card-quiet-2 {
+    box-shadow:
+      0 0 0 0.5px rgba(74, 65, 55, 0.08),
+      0 1px 0 0 rgba(74, 65, 55, 0.04),
+      0 12px 32px -16px rgba(74, 65, 55, 0.12);
   }
 
   ::selection {

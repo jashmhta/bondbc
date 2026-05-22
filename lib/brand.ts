@@ -291,33 +291,61 @@ export const TEAM = [
 ];
 
 // ─── Pexels atmospheric video clips for layered context ────────────────────
-// Posters are bundled locally so they paint instantly even on slow networks
-// (or if Pexels CDN ever fails). Videos lazy-load & overlay the poster.
+// Curated for institutional bond house brand. Each pairs a CDN video stream
+// with a locally-bundled poster image so first paint is instant.
 export const VIDEOS = {
   hero_skyline: {
-    src: "https://videos.pexels.com/video-files/12685044/12685044-hd_1920_1080_30fps.mp4",
-    poster: "/brand/hero-poster.jpg",
-    alt: "Aerial city skyline at night",
-    credit: "Tom Fisk · Pexels",
+    src: "https://videos.pexels.com/video-files/19314111/19314111-hd_1920_1080_30fps.mp4",
+    poster: "/brand/pexels-mumbai-skyline-night.jpg",
+    alt: "Aerial city skyline at evening — Mumbai bay",
+    credit: "Vijit Bagh · Pexels",
   },
   trading_floor: {
-    src: "https://videos.pexels.com/video-files/7580441/7580441-hd_1366_720_25fps.mp4",
-    poster: "/brand/trading-poster.jpg",
-    alt: "Trading screens with financial data",
-    credit: "Tima Miroshnichenko · Pexels",
+    src: "https://videos.pexels.com/video-files/6285687/6285687-hd_1280_720_30fps.mp4",
+    poster: "/brand/pexels-trading-screens.jpg",
+    alt: "Live trading screens with financial data",
+    credit: "Сама Сапогова · Pexels",
   },
-  abstract_finance: {
-    src: "https://videos.pexels.com/video-files/6543215/6543215-hd_1366_658_30fps.mp4",
-    poster: "/brand/trading-poster.jpg",
-    alt: "Abstract dark finance loop",
-    credit: "Roman Odintsov · Pexels",
+  data_streams: {
+    src: "https://videos.pexels.com/video-files/36252897/15374240_640_360_30fps.mp4",
+    poster: "/brand/pexels-data-monitors.jpg",
+    alt: "Abstract financial data streams",
+    credit: "Pexels",
   },
   handshake: {
     src: "https://videos.pexels.com/video-files/8170593/8170593-hd_1920_1080_25fps.mp4",
-    poster: "/brand/institutional-clients.jpg",
-    alt: "Business handshake / agreement",
+    poster: "/brand/pexels-boardroom-meeting.jpg",
+    alt: "Boardroom meeting — institutional client engagement",
     credit: "Kampus Production · Pexels",
   },
+  mumbai_traffic: {
+    src: "https://videos.pexels.com/video-files/8361011/8361011-hd_1280_720_24fps.mp4",
+    poster: "/brand/pexels-mumbai-skyline-evening.jpg",
+    alt: "Mumbai night traffic timelapse",
+    credit: "Pexels",
+  },
+  city_aerial: {
+    src: "https://videos.pexels.com/video-files/19314111/19314111-hd_1920_1080_30fps.mp4",
+    poster: "/brand/pexels-skyscrapers-gold.jpg",
+    alt: "City aerial view at sunset",
+    credit: "Pexels",
+  },
+};
+
+// ─── Editorial image library, curated for blank-space-filling moments ───────
+export const PEXELS_IMAGES = {
+  mumbai_skyline_night: "/brand/pexels-mumbai-skyline-night.jpg",
+  mumbai_skyline_evening: "/brand/pexels-mumbai-skyline-evening.jpg",
+  trading_screens: "/brand/pexels-trading-screens.jpg",
+  boardroom_meeting: "/brand/pexels-boardroom-meeting.jpg",
+  skyscrapers_gold: "/brand/pexels-skyscrapers-gold.jpg",
+  office_glass_corridor: "/brand/pexels-office-glass-corridor.jpg",
+  bond_certificate: "/brand/pexels-bond-certificate.jpg",
+  calculator_finance: "/brand/pexels-calculator-finance.jpg",
+  indian_architecture: "/brand/pexels-indian-architecture.jpg",
+  stock_market_india: "/brand/pexels-stock-market-india.jpg",
+  data_monitors: "/brand/pexels-data-monitors.jpg",
+  newspaper_finance: "/brand/pexels-newspaper-finance.jpg",
 };
 
 export const SERVICE_PHOTOS = {
