@@ -97,15 +97,7 @@ export function HeroVideo({
         }}
       />
 
-      {/* Light-mode parchment haze — adds warmth without obscuring the image */}
-      <div
-        aria-hidden
-        className="absolute inset-0 pointer-events-none dark:hidden mix-blend-multiply"
-        style={{
-          background:
-            "linear-gradient(to bottom, color-mix(in oklab, var(--bg), transparent 70%) 0%, color-mix(in oklab, var(--bg), transparent 85%) 50%, var(--bg) 100%)",
-        }}
-      />
+      {/* Light mode gets a clean image with just the bottom fade — no multiply, no haze */}
 
       {/* Optional left-side darken for headline contrast on desktop */}
       {sideFade && (
