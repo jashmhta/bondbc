@@ -49,7 +49,7 @@ export default function HomePage() {
       {/* ============================================================ */}
       {/* HERO  ▸  cinematic Mumbai golden-hour, image-first             */}
       {/* ============================================================ */}
-      <section className="relative min-h-[100svh] flex flex-col">
+      <section className="relative min-h-[100svh] flex flex-col isolate">
         <HeroVideo
           videoSrc={VIDEOS.hero_skyline.src}
           posterSrc={VIDEOS.hero_skyline.poster}
