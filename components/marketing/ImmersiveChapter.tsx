@@ -115,10 +115,14 @@ function Frame({
   mid: number;
   end: number;
 }) {
+  // Keep input in [0, 1] (Framer Motion 12 WAAPI rejects negative offsets) and
+  // avoid duplicate adjacent output keyframes (WAAPI rejects equal offsets too).
+  const safeStart = Math.max(0, start - 0.02);
+  const safeEnd = Math.min(1, end + 0.02);
   const opacity = useTransform(
     progress,
-    [start - 0.04, start, end, end + 0.04],
-    [0, 1, 1, 0],
+    [safeStart, mid, safeEnd],
+    [0, 1, 0],
   );
   const scale = useTransform(progress, [start, mid, end], [1.08, 1, 1.04]);
 
