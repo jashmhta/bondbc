@@ -249,7 +249,7 @@ export function ComparisonTable() {
           surfaces evolve quickly — verify on their sites. Binary Bonds&apos; retail-style
           listing browser will launch with{" "}
           <a
-            href="https://bondbc.manus.space" target="_blank" rel="noopener noreferrer"
+            href="https://bondtrading-2gpm5jbj.manus.space" target="_blank" rel="noopener noreferrer"
             className="text-[var(--accent)] hover:underline underline-offset-2"
           >
             Buy Bonds Q4 2026

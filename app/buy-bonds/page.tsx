@@ -115,7 +115,7 @@ export default function BuyBondsPage() {
             <div className="flex flex-wrap gap-4">
               <MagneticButton strength={0.18}>
                 <a
-                  href="https://bondbc.manus.space/register"
+                  href="https://bondtrading-2gpm5jbj.manus.space/register"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -127,7 +127,7 @@ export default function BuyBondsPage() {
               </MagneticButton>
               <MagneticButton strength={0.18}>
                 <a
-                  href="https://bondbc.manus.space/bonds"
+                  href="https://bondtrading-2gpm5jbj.manus.space/bonds"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
