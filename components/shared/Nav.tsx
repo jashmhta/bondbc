@@ -155,7 +155,7 @@ export function Nav() {
               {BRAND.contact.phone}
             </a>
             <Link
-              href="/buy-bonds"
+              href="https://bondbc.manus.space" target="_blank" rel="noopener noreferrer"
               className={cn(
                 "inline-flex items-center gap-1.5 h-9 px-3.5 rounded-md",
                 "border border-[var(--accent)]/40 text-[var(--accent)]",
@@ -240,7 +240,7 @@ export function Nav() {
         >
           {/* Buy Bonds — entry point for retail phase */}
           <Link
-            href="/buy-bonds"
+            href="https://bondbc.manus.space" target="_blank" rel="noopener noreferrer"
             aria-label="Buy Bonds (early access)"
             className={cn(
               "inline-flex items-center gap-1 h-9 px-3 rounded-full",
@@ -399,7 +399,7 @@ function MobileMenu({
                 className="mt-8 grid grid-cols-1 gap-3"
               >
                 <Link
-                  href="/buy-bonds"
+                  href="https://bondbc.manus.space" target="_blank" rel="noopener noreferrer"
                   onClick={onClose}
                   className="flex items-center justify-center gap-2 h-14 w-full rounded-full bg-[var(--accent)] text-[var(--accent-fg)] text-[16px] font-medium shadow-lg shadow-[var(--accent)]/25 active:scale-[0.98] transition-transform"
                 >

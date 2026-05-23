@@ -10,9 +10,9 @@ import { GoldParticles } from "@/components/motion/GoldParticles";
 import { ParallaxImage } from "@/components/motion/ParallaxImage";
 
 export const metadata: Metadata = {
-  title: "Buy Bonds — Early Access",
+  title: "Buy Bonds — Binary Bonds Platform",
   description:
-    "The retail bond investing platform from Binary Bonds. Curated AAA/AA paper, transparent yields, paperless onboarding. Join the early access waitlist.",
+    "Start investing in premium bonds with India's most transparent marketplace. Access 50+ curated bonds, SEBI regulated, ICCL settled.",
 };
 
 const PROMISE = [
@@ -75,10 +75,10 @@ export default function BuyBondsPage() {
                 <span className="relative h-1.5 w-1.5 rounded-full bg-[var(--accent)]">
                   <span className="absolute inset-0 rounded-full bg-[var(--accent)] animate-ping opacity-60" />
                 </span>
-                Coming · Q4 2026
+                Now Live
               </span>
               <span className="text-[11px] tracking-[0.18em] uppercase text-[var(--ink-dim)] font-mono">
-                Phase 2 · Retail platform
+                Retail Platform · Open Access
               </span>
             </div>
           </MotionSection>
@@ -104,36 +104,42 @@ export default function BuyBondsPage() {
           <MotionSection delay={0.35}>
             <p className="text-[clamp(15px,1.4vw,18px)] leading-[1.65] text-[var(--ink-muted)] max-w-3xl mb-10">
               For sixteen years our desk has placed bonds for banks, insurance companies, and
-              mutual funds at wholesale yields. We&apos;re building a retail platform that gives
-              individual Indian investors that same access — same paper, same yields, same desk.
-              Join the early access list for Q4 2026 launch.
+              mutual funds at wholesale yields. Now we&apos;re giving individual Indian investors
+              that same access — same paper, same yields, same desk.
+              Start investing today. Fully digital, SEBI regulated, ICCL T+1 settlement.
             </p>
           </MotionSection>
 
-          {/* WAITLIST FORM */}
+          {/* CTA BUTTON */}
           <MotionSection delay={0.5}>
-            <form
-              action={`mailto:${BRAND.contact.email}?subject=${encodeURIComponent("Buy Bonds — Early Access Waitlist")}`}
-              method="post"
-              encType="text/plain"
-              className="card-quiet p-2 sm:p-2 flex flex-col sm:flex-row gap-2 max-w-xl"
-            >
-              <input
-                type="email"
-                name="email"
-                required
-                placeholder="your@email.com"
-                className="flex-1 bg-transparent border-0 px-4 py-3 text-[15px] text-[var(--ink)] placeholder:text-[var(--ink-dim)] focus:outline-none"
-              />
+            <div className="flex flex-wrap gap-4">
               <MagneticButton strength={0.18}>
-                <Button type="submit" size="lg" variant="accent" className="!gap-2 !shrink-0">
-                  Join the waitlist
-                  <ArrowRight className="h-4 w-4" />
-                </Button>
+                <a
+                  href="https://bondbc.manus.space/register"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Button size="lg" variant="accent" className="!gap-2">
+                    Start Investing Now
+                    <ArrowUpRight className="h-4 w-4" />
+                  </Button>
+                </a>
               </MagneticButton>
-            </form>
+              <MagneticButton strength={0.18}>
+                <a
+                  href="https://bondbc.manus.space/bonds"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Button size="lg" variant="outline" className="!gap-2">
+                    Browse Bonds
+                    <ArrowRight className="h-4 w-4" />
+                  </Button>
+                </a>
+              </MagneticButton>
+            </div>
             <p className="mt-3 text-[12px] text-[var(--ink-dim)]">
-              Early-access notification only. We&apos;ll never share your address.
+              SEBI regulated · ICCL T+1 settlement · Paperless KYC
             </p>
           </MotionSection>
         </div>

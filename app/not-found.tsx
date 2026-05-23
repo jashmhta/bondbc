@@ -21,7 +21,7 @@ export default function NotFound() {
               Back to home
             </Button>
           </Link>
-          <Link href="/bonds">
+          <Link href="https://bondbc.manus.space/bonds">
             <Button variant="outline" size="lg">
               Browse bonds
             </Button>
