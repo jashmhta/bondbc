@@ -56,7 +56,7 @@ export default function HomePage() {
         <HeroVideo
           videoSrc={VIDEOS.hero_skyline.src}
           posterSrc={VIDEOS.hero_skyline.poster}
-          posterSrcLight="/brand/pexels-skyscrapers-gold.jpg"
+          posterSrcLight="/brand/hero-background-bonds.webp"
           posterAlt={VIDEOS.hero_skyline.alt}
           bottomFade={0.55}
           sideFade={false}
@@ -119,7 +119,7 @@ export default function HomePage() {
               >
                 market,
                 <InlinePill
-                  src="/brand/pexels-boardroom-meeting.jpg"
+                  src="/brand/binary-capital-desk-hero.png"
                   alt=""
                   size="lg"
                   tilt={-2}
@@ -281,7 +281,7 @@ export default function HomePage() {
           <MotionSection delay={0.2} className="lg:col-span-4 lg:col-start-9 lg:order-3 lg:row-span-2">
             <div className="relative aspect-[4/5] rounded-xl overflow-hidden bg-[var(--bg-2)]">
               <ParallaxImage
-                src="/brand/pexels-boardroom-meeting.jpg"
+                src="/brand/binary-capital-desk-hero.png"
                 alt="Institutional bond clients meeting"
                 intensity={8}
                 priority
@@ -517,7 +517,7 @@ export default function HomePage() {
         title="The Process"
         frames={[
           {
-            image: "/brand/pexels-boardroom-meeting.jpg",
+            image: "/brand/binary-capital-desk-hero.png",
             imageAlt: "Boardroom meeting with institutional bond clients",
             eyebrow: "Origination",
             headline: "It begins with a brief.",
@@ -533,7 +533,7 @@ export default function HomePage() {
               "Direct working relationships with CRISIL, ICRA, CARE, and India Ratings let us shape the credit story before the formal rating committee — saving weeks and protecting the spread.",
           },
           {
-            image: "/brand/pexels-newspaper-finance.jpg",
+            image: "/brand/binary-capital-social-square.png",
             imageAlt: "Financial newspaper with bond pricing",
             eyebrow: "Underwriting",
             headline: "We commit balance sheet.",
@@ -541,7 +541,7 @@ export default function HomePage() {
               "Devolvement risk sits with us, not the issuer. With 150+ institutional buyers on speed dial — banks, insurance, MFs — we firm-underwrite or hard-place every issue we touch.",
           },
           {
-            image: "/brand/pexels-trading-screens.jpg",
+            image: "/brand/analytics-dashboard-bg.png",
             imageAlt: "Trading screens with live market data",
             eyebrow: "Settlement",
             headline: "Then we settle on ICCL.",
@@ -660,7 +660,7 @@ export default function HomePage() {
             <MotionItem className="lg:col-span-4 grid grid-cols-2 lg:grid-cols-1 gap-3 lg:gap-5">
               <figure className="relative aspect-square lg:aspect-[4/5] rounded-2xl overflow-hidden bg-[var(--bg-2)] group">
                 <Image
-                  src="/brand/pexels-skyscrapers-gold.jpg"
+                  src="/brand/hero-background-bonds.webp"
                   alt="Skyscrapers at golden hour"
                   fill
                   sizes="(min-width: 1024px) 33vw, 50vw"
@@ -678,7 +678,7 @@ export default function HomePage() {
 
               <figure className="relative aspect-square lg:aspect-[4/5] rounded-2xl overflow-hidden bg-[var(--bg-2)] group">
                 <Image
-                  src="/brand/pexels-trading-screens.jpg"
+                  src="/brand/analytics-dashboard-bg.png"
                   alt="Trading screens with live market data"
                   fill
                   sizes="(min-width: 1024px) 33vw, 50vw"
@@ -699,7 +699,7 @@ export default function HomePage() {
             <MotionItem className="lg:col-span-4">
               <figure className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-[var(--bg-2)] group">
                 <Image
-                  src="/brand/pexels-indian-architecture.jpg"
+                  src="/brand/binary-capital-trust-card.png"
                   alt="Heritage colonial architecture in Mumbai"
                   fill
                   sizes="(min-width: 1024px) 33vw, 100vw"
@@ -735,7 +735,7 @@ export default function HomePage() {
             <MotionItem className="lg:col-span-4">
               <figure className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-[var(--bg-2)] group">
                 <Image
-                  src="/brand/pexels-newspaper-finance.jpg"
+                  src="/brand/binary-capital-social-square.png"
                   alt="Financial newspaper archive"
                   fill
                   sizes="(min-width: 1024px) 33vw, 100vw"

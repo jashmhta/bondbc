@@ -168,7 +168,7 @@ export default function AboutPage() {
           <MotionSection className="lg:col-span-7" delay={0.25}>
             <div className="relative aspect-[16/10] rounded-2xl overflow-hidden bg-[var(--bg-2)]">
               <ParallaxImage
-                src="/brand/institutional-clients.jpg"
+                src="/brand/binary-capital-trust-card.png"
                 alt="Bond desk meeting with institutional clients"
                 intensity={6}
                 priority

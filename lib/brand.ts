@@ -302,7 +302,7 @@ export const VIDEOS = {
   },
   trading_floor: {
     src: "https://videos.pexels.com/video-files/6285687/6285687-hd_1280_720_30fps.mp4",
-    poster: "/brand/pexels-trading-screens.jpg",
+    poster: "/brand/analytics-dashboard-bg.png",
     alt: "Live trading screens with financial data",
     credit: "Сама Сапогова · Pexels",
   },
@@ -314,19 +314,19 @@ export const VIDEOS = {
   },
   handshake: {
     src: "https://videos.pexels.com/video-files/8170593/8170593-hd_1920_1080_25fps.mp4",
-    poster: "/brand/pexels-boardroom-meeting.jpg",
+    poster: "/brand/binary-capital-desk-hero.png",
     alt: "Boardroom meeting — institutional client engagement",
     credit: "Kampus Production · Pexels",
   },
   mumbai_traffic: {
     src: "https://videos.pexels.com/video-files/8361011/8361011-hd_1280_720_24fps.mp4",
-    poster: "/brand/pexels-mumbai-skyline-evening.jpg",
+    poster: "/brand/pexels-mumbai-skyline-night.jpg",
     alt: "Mumbai night traffic timelapse",
     credit: "Pexels",
   },
   city_aerial: {
     src: "https://videos.pexels.com/video-files/19314111/19314111-hd_1920_1080_30fps.mp4",
-    poster: "/brand/pexels-skyscrapers-gold.jpg",
+    poster: "/brand/hero-background-bonds.webp",
     alt: "City aerial view at sunset",
     credit: "Pexels",
   },
